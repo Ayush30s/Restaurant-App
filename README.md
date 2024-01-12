@@ -68,3 +68,40 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Namsate food App
+
+Header
+   -logo
+   -Nav Item
+Body
+   -Search 
+   -ResturantConatiner
+   -ResturantCard
+      -img
+      -Name of Resturant 
+      -star rating
+      -cuisines
+      -time for delivery
+Footer
+   -Copyrigth
+   -Links
+   -Address
+   -Contact
+
+# React Hooks
+   -Normal JS utitlity function
+   -use state - used to genearte superpowerfull state variable
+   -use effect - 
+, are two most important hooks
+
+
+# Ract use Reconciliation algorithm (also known as React fiber) (Came in React 16) --->
+
+# if i have a res container and in the res container i have 7 res card , know on clicking a button my ui changes from filtering 7 cards to 3 cards
+# Behind the scene : first react creat a virtual DOM (Normal js object) (Virtual DOM is a representation of actual DOM) of the 7 res card
+
+# Diff algo -> it finds the difference between original and updated Virtual DOM , so as in above case the number of res card changes from 7 to 3 so the difference is of 4 which is finally get updated on the UI on every render cycle
+
+# Monolyth Architecture ->  
