@@ -97,6 +97,9 @@ Footer
 , are two most important hooks
 
 
+# Virtuual DOM 
+-  is object repersentation of actual DOM
+
 # Ract use Reconciliation algorithm (also known as React fiber) (Came in React 16) --->
 
 # if i have a res container and in the res container i have 7 res card , know on clicking a button my ui changes from filtering 7 cards to 3 cards

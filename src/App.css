@@ -51,6 +51,7 @@
 .filter-btn {
    margin: 10px 0px;
    cursor: pointer;
+   padding: 10px;
 }
 
 .shimmer-conatiner {
@@ -90,4 +91,10 @@
 .Login-button {
    padding: 0px 20px;
    cursor: pointer;
+}
+
+.Filter {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
 }
