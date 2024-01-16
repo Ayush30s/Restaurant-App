@@ -19,7 +19,7 @@ const Body = () => {
    const fetchData = async () => {
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
-      const newResArray = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      const newResArray = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       setListofRestaurant(newResArray);
       setfileterdRestaurantList(newResArray);
    }
@@ -52,7 +52,7 @@ const Body = () => {
             <button className="filter-btn"
                onClick={() => {
                   const filteredList = listofRestaurants.filter (  
-                     (res) => parseFloat(res?.info?.avgRating) > 4.3
+                     (res) => parseFloat(res?.info?.avgRating) >= 4.5
                   )
                   setfileterdRestaurantList(filteredList);
                }}
