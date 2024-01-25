@@ -98,3 +98,7 @@
    justify-content: space-around;
    align-items: center;
 }
+
+.card {
+   border: 1px solid black;
+}

@@ -23,6 +23,7 @@ export const RestaurantCard = (props) => {
          <h4>Rating: {avgRating}</h4>
          <h4>Cost: {costForTwo}</h4>
          <h4>Delivery Time: {deliveryTime} mins</h4>
+         <h5>Location: {}</h5>
       </div>
    )
 }
