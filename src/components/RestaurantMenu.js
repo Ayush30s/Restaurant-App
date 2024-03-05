@@ -1,39 +1,55 @@
-import { useEffect ,useState} from "react";
 import MenuDishCard from "./MenuDishCard";
-import {CDN_URL , MENU__API} from "../utils/constants"
-import {useParams} from "react-router-dom"
-
+import { CDN_URL } from "../utils/constants";
+import { json, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { MENU__API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+import SubItems from "./SubItems";
 
 const RestaurantMenu = () => {
    const resIdObj = useParams();
+   const { resId } = resIdObj;
 
-   const [resInfo , setresInfo] = useState(null);
+   const [menuList, setMenuList] = useState([]);
 
    useEffect(() => {
-      fetchMenu();
-   },[]);
+      fetchData();
+   }, []);
 
-   const fetchMenu = async() => {
-      const apidata = await fetch(MENU__API + resIdObj.resId);
-      const json = await apidata.json();
-      setresInfo(json.data);
+   const fetchData = async () => {
+      const data = await fetch(MENU__API + resId);
+      const json = await data.json();
+   
+      setMenuList(json);
    }
 
-   const itemCards = resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
-   const { name , cloudinaryImageId , locality, city, costForTwoMessage} = resInfo?.cards[2]?.card?.card?.info || {};
+   console.log(menuList);
 
+   const name = menuList?.data?.cards[0]?.card?.card?.text;
+   const avgRating = menuList?.data?.cards[2]?.card?.card?.info?.avgRating;
+   const cuisines = menuList?.data?.cards[2]?.card?.card?.info?.cuisines.join(',');
+   const areaname = menuList?.data?.cards[2]?.card?.card?.info?.areaName;
+   const totalRating = menuList?.data?.cards[2]?.card?.card?.info?.totalRatings;
+   const deliveryTime =  menuList?.data?.cards[2]?.card?.card?.info?.sla?.deliveryTime;
+   const lastMileTravelString =  menuList?.data?.cards[2]?.card?.card?.info?.sla?.lastMileTravelString;
+   const deliveryCharge =  menuList?.data?.cards[2]?.card?.card?.info?.expectationNotifiers[0]?.enrichedText;
+   
+   
+
+   
    return (
       <div className="menu">
-         <h1>Name : {name}</h1>
-         <img alt = "resImage" src= {CDN_URL + cloudinaryImageId}></img>
-         <h3>At {locality} , {city}</h3>
-         <h3>{costForTwoMessage}</h3>
-         <h2>Menu</h2>    
-         <div className="Menu-Container">
-            {itemCards && itemCards.map((item) => (
-               <MenuDishCard key={item.id} MenuDish={item} />
-            ))} 
-         </div>                
+         <h1>{name}</h1>
+         <div>{avgRating}</div>
+         <div>
+            <p>{cuisines}</p>
+            <p>{areaname}</p>
+         </div>
+         <div>{totalRating/1000}k+</div>
+         <div>{deliveryTime}</div>
+         <div>{lastMileTravelString}</div>
+         <div>{deliveryCharge}</div>
+         
       </div>
    );
 }

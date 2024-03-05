@@ -1,7 +1,8 @@
 import React from "react";
 
 const MenuDishCard = (MenuDish) => {
-   const {name, price} = MenuDish.MenuDish.card.info || {};
+   console.log(MenuDish);
+   const {name, price} = MenuDish || {};
    return (
       <div className="card">
          <h6>{name} , - Rs. {price / 100}</h6>
