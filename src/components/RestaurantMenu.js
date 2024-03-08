@@ -1,10 +1,10 @@
-import MenuDishCard from "./MenuDishCard";
-import { CDN_URL } from "../utils/constants";
-import { json, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { MENU__API } from "../utils/constants";
-import useRestaurantMenu from "../utils/useRestaurantMenu";
-import SubItems from "./SubItems";
+import AboutRestaurant from "./Menu/AboutRestaurant";
+import Offer from "./Menu/Offers";
+import Categories from "./Menu/Categories";
+
 
 const RestaurantMenu = () => {
    const resIdObj = useParams();
@@ -19,39 +19,35 @@ const RestaurantMenu = () => {
    const fetchData = async () => {
       const data = await fetch(MENU__API + resId);
       const json = await data.json();
-   
-      setMenuList(json);
+
+      let newmenudata = json.data.cards;
+      setMenuList(newmenudata);
    }
 
-   console.log(menuList);
-
-   const name = menuList?.data?.cards[0]?.card?.card?.text;
-   const avgRating = menuList?.data?.cards[2]?.card?.card?.info?.avgRating;
-   const cuisines = menuList?.data?.cards[2]?.card?.card?.info?.cuisines.join(',');
-   const areaname = menuList?.data?.cards[2]?.card?.card?.info?.areaName;
-   const totalRating = menuList?.data?.cards[2]?.card?.card?.info?.totalRatings;
-   const deliveryTime =  menuList?.data?.cards[2]?.card?.card?.info?.sla?.deliveryTime;
-   const lastMileTravelString =  menuList?.data?.cards[2]?.card?.card?.info?.sla?.lastMileTravelString;
-   const deliveryCharge =  menuList?.data?.cards[2]?.card?.card?.info?.expectationNotifiers[0]?.enrichedText;
-   
-   
-
-   
+   let aboutrestaurant = menuList[0]?.card?.card?.info;
+   let offerdata = menuList[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
+   let accordianitem = menuList[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  
    return (
-      <div className="menu">
-         <h1>{name}</h1>
-         <div>{avgRating}</div>
-         <div>
-            <p>{cuisines}</p>
-            <p>{areaname}</p>
-         </div>
-         <div>{totalRating/1000}k+</div>
-         <div>{deliveryTime}</div>
-         <div>{lastMileTravelString}</div>
-         <div>{deliveryCharge}</div>
-         
+      <div id="resDetail" className="w-[80%] py-4 my-2 mt-20">
+        <AboutRestaurant data={aboutrestaurant} />
+        <Offer data={offerdata} />
+        <div>
+            {accordianitem?.map((ele) => {
+               if (
+                  ele.card.card["@type"] ===
+                     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" ||
+                  ele.card.card["@type"] ===
+                     "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
+               ) {
+                  return <Categories data={ele} />;
+               } else {
+                  return null;
+               }
+            })}
+        </div>
       </div>
-   );
+    );
 }
 
 export default RestaurantMenu;

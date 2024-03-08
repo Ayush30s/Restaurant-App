@@ -4,7 +4,7 @@
 
 // so we create out custom hook that will fetch the data
 
-import { MENU__API } from "./constants";
+import { MENU__API } from "../utils/constants";
 import { useEffect, useState } from "react";
 
 const useRestaurantMenu = async (resID) => {

@@ -16,7 +16,7 @@ const AppLayput = () =>{
 
    return (
       <div className='flex justify-center'>
-         {/* <Header /> */}
+         <Header />
          <Outlet />
       </div>
    )
