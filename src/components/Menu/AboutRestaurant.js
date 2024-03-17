@@ -1,3 +1,4 @@
+import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 
 const AboutRestaurant = (resdata) => {
@@ -9,13 +10,18 @@ const AboutRestaurant = (resdata) => {
    let avgRating = resdata?.data?.avgRating;
    let totalRatings = resdata?.data?.totalRatings;
    let areaName = resdata?.data?.areaName;
+ 
+   let cusinestring = "";
+   resdata?.data?.cuisines.map((el) => {
+      cusinestring += el;
+   });
    
    return (
       <div>
          <div className="flex justify-between border-b border-b-gray p-3 my-3">
             <div>
                <h1 className="font-bold py-2">{resname}</h1>
-               <h3 className="text-[12px]">{cuisines.join(",")}</h3>
+               <h3 className="text-[12px]">{cusinestring}</h3>
                <h3 className="text-[12px]">{areaName} , {lastMileTravelString}</h3>
             </div>
 

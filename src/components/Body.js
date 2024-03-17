@@ -73,14 +73,12 @@ const Body = () => {
    }
 
    return (
-      <div className=" relative top-24 overflow-x-hidden flex flex-col justify-center align-middle">
+      <div className=" relative top-24 overflow-y-hidden flex flex-col justify-center">
          <BodyFirstSection/>
          
          <ResSlider resData={listofRestaurants}/>
-         <hr className="z-10"></hr>
-         
 
-         <div className='flex justify-center align-middle rounded-lg my-10'>
+         <div className='flex justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
             <div className="mt-1">
                <input type="text" className = "px-3 rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none " placeholder="Search Food" onChange={(event) => {
                   setSearchText(event.target.value);
@@ -162,8 +160,8 @@ const Body = () => {
             >Less than 300</button>
          </div>
          
-         <div id = "body" className= 'text-black flex flex-col justify-center align-middle w-[95%] rounded-xl h-[100%]'>
-            <div className='flex flex-wrap justify-center align-middle'>
+         <div id = "body" className= 'text-black  ml-[12%] flex flex-wrap  w-[85%] h-full'>
+      
                {fileterdRestaurantList?.map((restaurant) => (
                   <Link key = {restaurant?.info?.id} to = {"/restaurants/" + restaurant?.info?.id}>
                      { 
@@ -175,7 +173,7 @@ const Body = () => {
                      }
                   </Link>
                ))}
-            </div>
+            
          </div>
       </div>
    ) 

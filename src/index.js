@@ -6,10 +6,9 @@ import Contact from './components/Contact';
 import Error from './components/Error';
 import { AppLayput } from './App';
 import { createBrowserRouter , RouterProvider } from "react-router-dom"
-import RestaurantMenu from './components/RestaurantMenu';
+import RestaurantMenu from './components/Menu/RestaurantMenu';
 import { useParams } from 'react-router-dom';
-
-
+import Checkout from './components/Checkout/Checkout';
 
 // this will load grocry code on demand on clickking the grocry link React is very fast, so it tries  
 // to render the code of grocery as fast as possible, but using lazy loading the code react get the code to render. 
@@ -56,6 +55,10 @@ const appRouter = createBrowserRouter([
             path: "/restaurants/:resId",
             element: <RestaurantMenu/>
          },
+         {
+            path: "/cart",
+            element: <Checkout/>
+         }
       ],
       errorElement: <Error/>
    }, 

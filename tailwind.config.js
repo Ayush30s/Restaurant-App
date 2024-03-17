@@ -6,7 +6,7 @@ module.exports = {
    theme: {
      extend: {
          fontFamily:{
-            appFpnt: ["Pacifico", 'cursive']
+            appFont: ["Rubik", 'sans-serif']
          }
      },
    },

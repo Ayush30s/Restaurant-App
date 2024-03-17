@@ -16,7 +16,7 @@ class Userclass extends Component {
 
    /* props is an object of all the (key - value) pairs passed by the user */
    constructor(props) {
-      console.log("child constructor called");
+      // console.log("child constructor called");
 
       /* Call the constructor of the Component class and pass the props to it */ 
       //ALWAYS USE -> SUPER(PROPS)
@@ -45,11 +45,11 @@ class Userclass extends Component {
 
    //it is called after once cycle complete (constructor->render->componentDidMount)->componentDidUpdate.
    componentDidUpdate() {
-      console.log("component Did update");
+      // console.log("component Did update");
    }
 
    componentWillUnmount() {
-      console.log("component will unmount");
+      // console.log("component will unmount");
    }
 
    /* render() is a method that just returns a piece of jsx */
@@ -57,9 +57,13 @@ class Userclass extends Component {
       console.log("inside Render");
       const {avatar_url , name, location} = this.state.UserInfo;
       return (
-         <div className="user-card">
+         <div className="user-card">  
             <img src={avatar_url} alt="avatar"></img>
-            <h1>Name: {name}</h1>
+
+            {/* <UserContext.Consumer>
+               {(data) => <h1>Name : {data.userName}</h1>}
+            </UserContext.Consumer> */}
+
             <h2>Location: {location}</h2>
             <h3>Contact: @_ayu_sh_srvastav_</h3>
          </div>

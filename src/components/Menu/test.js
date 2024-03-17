@@ -1,12 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import ItemCards from "./ItemCards";
-import FreezState from "../../Redux/FreezState";
-import { Provider } from "react-redux";
-import AppStore from "../../Redux/AppStore";
-import countVegNonvegDishes from "../../utils/countVegNonvegDishes";
-import FoodContext from "../../utils/FoodContext";
 import { useContext } from "react";
+import FoodContext from "../../utils/FoodContext";
 
 const CategoryItem = (category) => {
    const data = category.data.categories;
@@ -16,17 +12,32 @@ const CategoryItem = (category) => {
       setVisibleIndex(index === visibleIndex ? null : index);
    }
 
-   const {vegornot} = useContext(FoodContext);
+   const foodtype = useContext(FoodContext);
 
-   return (
-      
-      <Provider store={AppStore}>
-         <div className="m-1 p-2 text-sm">
-            {data?.map((ele, index) => {
+   let Ftype;
+   if(foodtype.vegornot == 0) {
+      Ftype = "NONVEG";
+   } else {
+      Ftype = "VEG";
+   }
 
-               let count = countVegNonvegDishes({ele,vegornot});
+   //check kro ki agr ji itemcard ko hm render krne wale hi usme apne veg non-veg wale filter ke according data hai ya ni agr filter ke according data usme 0 hi to us item card ke andar dishes ko render mt krna
+   for(let i = 0; i < data.length; i++) {
+      let filteredDishes = 0;
 
-               if(count > 0) {
+      let subData = data[i].itemCards;
+      for(let j = 0; j < subData.length; j++) {
+
+         if(subData[j].card.info.itemAttribute.vegClassifier === Ftype) {
+            filteredDishes++;
+         }
+      }
+
+      if(filteredDishes > 0) {
+
+         return (
+            <div className="m-1 p-2 text-sm">
+               {data?.map((ele, index) => {
                   return (
                      <div key={index}>
                         <div onClick={() => setVisible(index)} className="flex justify-between m-2 p-3 border-b-2">
@@ -39,16 +50,15 @@ const CategoryItem = (category) => {
                                  Open
                            </button>}
                         </div>
-   
                         {/* ItemCard is a controlled component as it is controlled by the state variable of category ITems */}
                         {visibleIndex === index && <ItemCards data={ele.itemCards}/>}
                      </div>
                   )
-               }
-            })}
-         </div>
-      </Provider>
-   )
+               })}
+            </div>
+         )
+      } 
+   }
 }
 
 export default CategoryItem;

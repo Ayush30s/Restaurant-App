@@ -108,3 +108,13 @@ Footer
 # Diff algo -> it finds the difference between original and updated Virtual DOM , so as in above case the number of res card changes from 7 to 3 so the difference is of 4 which is finally get updated on the UI on every render cycle
 
 # Monolyth Architecture ->  
+
+
+# RTK (Redux Toolkit)
+
+- install reduxjs/toolkit react-redux
+- Bilud or store
+- Connect the store to our App
+- create a Cart slice to add item to cart
+- Dispatch and Action
+- Read the data using selcetor

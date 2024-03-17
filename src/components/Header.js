@@ -3,6 +3,8 @@ import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useInternetStatus from "../utils/OnlineStatus";
+import cartslice from "../Redux/cartslice";
+import { useSelector } from "react-redux";
 
 const Header = () => {
 
@@ -36,16 +38,19 @@ const Header = () => {
       body.append(searchdiv);
    }
    
+   //to connect the store and the cart or to subscribe we use useSelector hook
+   const cart = useSelector((store) => store.cart.items);
+
    return (
       <>
-         <div className="bg-white flex justify-between w-[95%] align-middle rounded-lg text-black fixed left-7 z-10 shadow-black drop-shadow-lg">
+         <div className="bg-white flex justify-between w-[100%] align-middle  text-black fixed z-10 shadow-black drop-shadow-lg">
             <div>
-               <img className="w-28 m-2 rounded-xl" src = {LOGO_URL} alt='ResturantLogo'/>
+               <img className="w-20 mx-2 rounded-xl" src = {LOGO_URL} alt='ResturantLogo'/>
             </div>
 
             <div className="flex items-center">
-               <ul className="flex p-2 m-4">
-                  <li><button className="flex pl-12 py-1 border mr-10 rounded-3xl bg-black font-bold w-56 text-white" onClick={()=> {
+               <ul className="flex p-2 m-2">
+                  <li><button className="py-1 border mr-10 rounded-3xl text-center bg-black font-bold w-80 text-white" onClick={()=> {
                      if(searchPlace === false) {
                         setsearchPlace(true)
                      }
@@ -66,7 +71,9 @@ const Header = () => {
                   relodaing the whole page, alike anchor tag it just loads the part of the page to which we want to move */}
                   <Link to={"/contact"}><li className="px-3 font-bold hover:py-1 font-mono  hover:shadow-lg rounded-lg">Contact</li></Link>
 
-                  <button className="w-20 px-3 ml-4 mb-3 font-bold font-mono rounded-3xl bg-black hover:shadow-lg py-1 text-white" onClick={() => { 
+                  <Link to ={"/cart"}><li className="px-3 font-bold hover:py-1 font-mono  hover:shadow-lg rounded-lg">Cart({cart.length} Items)</li></Link>
+
+                  <button className="w-20 px-3 ml-4 mb-2 font-bold font-mono rounded-3xl bg-black hover:shadow-lg py-1 text-white" onClick={() => { 
                      if(btnName === "Login") {
                         setBtnName("Logout");
                      } else {

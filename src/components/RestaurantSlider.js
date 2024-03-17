@@ -35,7 +35,7 @@ const ResSlider = ({ resData }) => {
 
    return (
 
-         <div id="ResSlider" className=" text-black mt-2 mx-24 flex flex-col px-10 rounded-xl h-[100%] p-10">
+         <div id="ResSlider" className=" text-black mt-2 mx-24 flex flex-col px-10 rounded-xl mb-10 h-[100%] p-10">
             <h1 className="text-2xl ml-2 mb-4"><b>Famous Restaurants in Your City</b></h1>
             <Slider {...settings}>
                {topResArray?.map((restaurant) => (
