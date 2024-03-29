@@ -6,7 +6,6 @@ import Cartslice, { clearCart } from "../../Redux/cartslice";
 const CartBody = () => {
 
    const items = useSelector((store) => store.cart.items);
-
    const dispatch = useDispatch();
    
    const handleClearCart = () => {
@@ -15,7 +14,7 @@ const CartBody = () => {
 
    return items.length === 0 ? 
       <h1>Cart is Empty</h1> 
-   : 
+      : 
       <div className="w-[100%] h-[300px] bg-green-300">
          <button onClick={handleClearCart}>Clear Cart</button>
          {items.map((ele) => {

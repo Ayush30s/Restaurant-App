@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
 import { RestaurantCard } from "./RestaurantCard";
 import CardWithLabel from "./RestaurantCard";
 import { useState,useEffect } from "react";
@@ -8,7 +7,6 @@ import { useState,useEffect } from "react";
 const ResSlider = ({ resData }) => {
 
    let [topResArray, setTopResArray] = useState([]);
-
 
    useEffect(() => {
       fetchData();
@@ -21,39 +19,30 @@ const ResSlider = ({ resData }) => {
       const json = await data.json();
       
       let newResArray = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
       setTopResArray(newResArray);
    }
-   
-   let settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4
-   };
 
+  
    return (
-
-         <div id="ResSlider" className=" text-black mt-2 mx-24 flex flex-col px-10 rounded-xl mb-10 h-[100%] p-10">
-            <h1 className="text-2xl ml-2 mb-4"><b>Famous Restaurants in Your City</b></h1>
-            <Slider {...settings}>
-               {topResArray?.map((restaurant) => (
-
-                  <Link key={restaurant?.info?.id} to={"/restaurants/" + restaurant?.info?.id}>
-                     { 
-                        restaurant?.info?.aggregatedDiscountInfoV3?.header ? (
-                           <LabelCard resData = {restaurant}/>
-                        ) : (
-                           <RestaurantCard resData={restaurant}/>
-                        )
-                     }
-                  </Link>
-
-               ))}
-            </Slider>
+      <div id="ResSlider" className=" my-8 mx-24 flex flex-col h-[40%] pt-5">
+         <h1 className="text-2xl ml-2 mb-4 font-semibold">Famous Restaurants in Your City</h1>
+         
+         <div className="flex overflow-x-scroll touch-auto custom-scrollbar rounded-2xl snap-x">
+            {topResArray?.map((restaurant) => (
+               <Link key={restaurant?.info?.id} to={"/restaurants/" + restaurant?.info?.id}>
+                  { 
+                     restaurant?.info?.aggregatedDiscountInfoV3?.header ? (
+                        <LabelCard resData = {restaurant}/>
+                     ) : (
+                        <RestaurantCard resData={restaurant}/>
+                     )
+                  }
+               </Link>
+            ))}
          </div>
+      </div>
    );
+   
 };
 
 export default ResSlider;

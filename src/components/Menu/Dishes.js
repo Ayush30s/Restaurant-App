@@ -2,7 +2,7 @@ import React from "react";
 import { CDN_URL } from "../../utils/constants";
 import Variant from "./Variant";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../Redux/cartslice";
 
 const Dishes = (data) => { 
@@ -12,7 +12,7 @@ const Dishes = (data) => {
 
    let [clicked, setclicked] = useState(false);
    const toggel = () => {
-      setclicked(!clicked);
+      setclicked(true);
    }
 
    const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Dishes = (data) => {
       // on clicking the button i dispatch an item
       dispatch(addItem(data));
    }
-
+   
    return (
       <div id="alldish" className="flex flex-col justify-center">
          <div className = "border border-gray-300 shadow-lg rounded-bl-3xl rounded-br-3xl rounded-tr-3xl m-3 flex flex-row justify-between p-2">

@@ -1,14 +1,20 @@
 import React from "react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem } from "../../Redux/cartslice";
 
 const CartItem = (data) => {
 
-   const {name} = data.data.data.card.info;
+   const {name,id} = data.data.data.card.info;
+   const items = useSelector((store) => store.cart.items);
+   
+   const dispatch = useDispatch();
 
    return (
-      <div id="cartitems" className="flex justify-evenly bg-white rounded-sm m-2"> 
+      <div id="cartitems" className="flex justify-between bg-white rounded-sm m-2"> 
          <h1 className="text-black w-90%">{name}</h1>
-         <button className="w-10%">🗑️</button>
+         <button className="w-10%" onClick={() => {
+            dispatch(removeItem(id));
+         }}>🗑️</button>
       </div>     
    )
 }

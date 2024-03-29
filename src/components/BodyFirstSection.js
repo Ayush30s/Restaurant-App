@@ -1,7 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { FIRST_PAGE } from "../utils/constants";
+import { FIRST_PAGE } from "../utils/constants"; 
 import MiniCards from "./MiniCards"
+import { Link } from "react-router-dom";
 
 const BodyFirstSection = () => {
 
@@ -18,18 +19,12 @@ const BodyFirstSection = () => {
       setmyMindFood(newarray);
    }
 
-   let settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 1
-   };
+   const foodId = 0;
 
    return (
-      <div className="w-full h-full bg-slate-500">
+      <div className=" mx-24 my-5 h-full flex flex-row touch-auto snap-x overflow-x-scroll custom-scrollbar">
          {myMindFood?.map((food) => (
-            <MiniCards foodData = {food}/>
+            <Link to={"/food/collection/id=/" + food.action.link.match(/\d+/g).map(Number)[0] + "/restaurants"}><MiniCards foodData = {food}/></Link>
          ))}
       </div>
    )

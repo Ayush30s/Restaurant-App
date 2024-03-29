@@ -13,7 +13,7 @@ const Categories = (category) => {
    }
 
    return (
-      <div className=" p-5 bg-slate-50 m-2 shadow-md">
+      <div className=" p-5 bg-slate-50 my-4 shadow-md">
          <div className="flex justify-between" onClick={setVsisble}>
             <div className="font-bold text-sm bg-gray-200 border border-white shadow-xl px-2 py-1 rounded-3xl">{data.title}</div>
             {showItems ? 

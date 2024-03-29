@@ -4,12 +4,13 @@ import {CDN_URL} from "../utils/constants"
 export const MiniCards = (props) => {
    
    const {foodData} = props;
-   const {text} = foodData.action;   
+   const {text} = foodData.action;  
+   const {imageId} = foodData;  
 
+   
    return(
-      <div className="">
-         <img/>
-         <h3></h3>
+      <div className="z-10 snap-start w-[180px] h-[190px] p-1 hover:p-3">
+         <img src={CDN_URL+imageId}/>
       </div>
    )
 }

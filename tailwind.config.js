@@ -10,5 +10,15 @@ module.exports = {
          }
      },
    },
-   plugins: [],
+   plugins: [
+      function({ addUtilities }) {
+         const newUtilities = {
+            '.custom-scrollbar::-webkit-scrollbar':{
+               display: 'none',
+            },
+         };
+
+         addUtilities(newUtilities, ['responsive', 'hover']);
+      },
+   ],
  }

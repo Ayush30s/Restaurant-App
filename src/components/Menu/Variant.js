@@ -1,12 +1,20 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { updateFreez } from "../../Redux/FreezState";
 
 const Variant = (props) => {
-   // console.log(props)
    const [usedata,setdata] = useState(0);
 
    const toggeldata = (rupee) => {
       setdata(rupee);
+   }
+
+   const dispatch = useDispatch();
+
+   const handleClickBtn = () => {
+      dispatch(updateFreez(false));
    }
 
    return (
@@ -14,7 +22,10 @@ const Variant = (props) => {
          
          <div className="flex justify-between mx-7 my-2 border-b-2 py-3 ">
             <h1 className=" from-neutral-900 text-lg">Customize "{props.dishname}"</h1>
-            <button className="font-semibold ml-4 text-white bg-red-400 rounded-full px-2 hover:bg-red-500 hover:font-bold" onClick={() => props.chnagestate(false)}>X</button>
+            <button className="font-semibold ml-4 text-white bg-red-400 rounded-full px-2 hover:bg-red-500 hover:font-bold" onClick={() => {
+               props.chnagestate(false);
+               handleClickBtn();
+            }}>X</button>
          </div>
 
          <div className="mx-7 mt-3 py-2">

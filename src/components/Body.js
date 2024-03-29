@@ -1,16 +1,11 @@
 import React from "react"
-import Slider from "react-slick";
-
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom";
-
 import { RestaurantCard } from "./RestaurantCard";
 import ResSlider from "./RestaurantSlider";
 import BodyFirstSection from "./BodyFirstSection";
 import CardWithLabel from "./RestaurantCard";
-
 import useInternetStatus from "../utils/OnlineStatus";
-import { TOP_RES_API } from "../utils/constants";
 
 
 const Body = () => {
@@ -20,8 +15,7 @@ const Body = () => {
    let [fileterdRestaurantList, setfileterdRestaurantList] = useState([]);
    let [searchText, setSearchText] = useState("");
    let [filters, setfilters] = useState([]);
-   let [topResArray, setTopResArray] = useState([]);
-  
+   let [isloading, setIsLoading] = useState(false);
 
    useEffect(() => {
       fetchData();
@@ -30,8 +24,8 @@ const Body = () => {
    const fetchData = async () => {
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7586175&lng=80.9141368&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
-      
       let newResArray = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      setIsLoading(true);
 
       setListofRestaurant(newResArray);
       setfileterdRestaurantList(newResArray);
@@ -71,97 +65,99 @@ const Body = () => {
          <h1>Check your internet conection!<br/> You are Offline!</h1>
       );
    }
-
-   return (
-      <div className=" relative top-24 overflow-y-hidden flex flex-col justify-center">
-         <BodyFirstSection/>
-         
-         <ResSlider resData={listofRestaurants}/>
-
-         <div className='flex justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
-            <div className="mt-1">
-               <input type="text" className = "px-3 rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none " placeholder="Search Food" onChange={(event) => {
-                  setSearchText(event.target.value);
-               }}/>
-
-               {/* Search */}
-               <button className="mx-2 mt-2 border shadow-lg border-black px-2 m-3 bg-black rounded-3xl cursor-pointer text-white" onClick={() => {
-                  let filterteredRestaurant = listofRestaurants?.filter(
-                     (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
-                  )
-                  setfileterdRestaurantList(filterteredRestaurant);
-               }}>Search</button>
+   
+   if(!isloading) {
+      return <h1 className="m-64">Loading...</h1>
+   } else {
+      return (
+         <div className=" relative top-24 overflow-y-hidden overflow-x-hidden flex flex-col justify-center">
+            <BodyFirstSection/>
+            
+            <ResSlider resData={listofRestaurants}/>
+   
+            <div className='flex justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
+               <div className="mt-1">
+                  <input type="text" className = "px-3 rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none " placeholder="Search Food" onChange={(event) => {
+                     setSearchText(event.target.value);
+                  }}/>
+   
+                  {/* Search */}
+                  <button className="mx-2 mt-2 border shadow-lg border-black px-2 m-3 bg-black rounded-3xl cursor-pointer text-white" onClick={() => {
+                     let filterteredRestaurant = listofRestaurants?.filter(
+                        (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
+                     )
+                     setfileterdRestaurantList(filterteredRestaurant);
+                  }}>Search</button>
+               </div>
+   
+               <button id ="allres" className="border shadow-lg border-black px-2 m-3 rounded-3xl active:bg-black active:text-white"
+                  onClick={() => {
+                     for(let fl of filters) {
+                        document.getElementById(fl).classList.remove("bg-black", "text-white");
+                        document.getElementById(fl).classList.add("bg-white", "text-black");
+                     }
+                     setfileterdRestaurantList(listofRestaurants);
+                     setfilters([]);
+                  }}
+               >All Restaurant</button>
+   
+               <button id="fast" className="border border-black m-3 px-2 rounded-3xl"
+                  onClick={() => {
+                     if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
+                        document.getElementById("fast").classList.remove("bg-black", "text-white");
+                        document.getElementById("fast").classList.add("bg-white", "text-black");
+                     } else {
+                        document.getElementById("fast").classList.remove("bg-white" , "text-black");
+                        document.getElementById("fast").classList.add("bg-black" , "text-white");
+                     }
+   
+                     if (filters.includes("fast")) {
+                        setfilters(filters.filter(filter => filter !== "fast"));
+                     } else {
+                        setfilters([...filters, "fast"]);
+                     }
+                  }}
+               >Fast Delivery</button>
+   
+               <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl"
+                  onClick={() => {
+                     if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
+                        document.getElementById("avgRating").classList.remove("bg-black", "text-white");
+                        document.getElementById("avgRating").classList.add("bg-white", "text-black");
+                     } else {
+                        document.getElementById("avgRating").classList.remove("bg-white" , "text-black");
+                        document.getElementById("avgRating").classList.add("bg-black" , "text-white");
+                     }
+   
+                     if (filters.includes("avgRating")) {
+                        setfilters(filters.filter(filter => filter !== "avgRating"));
+                     } else {
+                        setfilters([...filters, "avgRating"]);
+                     }
+                  }}
+               >4.5+ rated</button>
+   
+               <button id="costForTwo" className="border shadow-lg border-black m-3 px-2 rounded-3xl"
+                  onClick={() => {
+                     if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
+                        document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
+                        document.getElementById("costForTwo").classList.add("bg-white", "text-black");
+                     } else {
+                        document.getElementById("costForTwo").classList.remove("bg-white", "text-black");
+                        document.getElementById("costForTwo").classList.add("bg-black", "text-white");
+                     }
+   
+   
+                     if (filters.includes("costForTwo")) {
+                        setfilters(filters.filter(filter => filter !== "costForTwo"));
+                     } else {
+                        setfilters([...filters, "costForTwo"]);
+                     }
+                  }}
+               >Less than 300</button>
             </div>
-
-            <button id ="allres" className="border shadow-lg border-black px-2 m-3 rounded-3xl active:bg-black active:text-white"
-               onClick={() => {
-                  for(let fl of filters) {
-                     document.getElementById(fl).classList.remove("bg-black", "text-white");
-                     document.getElementById(fl).classList.add("bg-white", "text-black");
-                  }
-                  setfileterdRestaurantList(listofRestaurants);
-                  setfilters([]);
-               }}
-            >All Restaurant</button>
-
-            <button id="fast" className="border border-black m-3 px-2 rounded-3xl"
-               onClick={() => {
-                  if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
-                     document.getElementById("fast").classList.remove("bg-black", "text-white");
-                     document.getElementById("fast").classList.add("bg-white", "text-black");
-                  } else {
-                     document.getElementById("fast").classList.remove("bg-white" , "text-black");
-                     document.getElementById("fast").classList.add("bg-black" , "text-white");
-                  }
-
-                  if (filters.includes("fast")) {
-                     setfilters(filters.filter(filter => filter !== "fast"));
-                  } else {
-                     setfilters([...filters, "fast"]);
-                  }
-               }}
-            >Fast Delivery</button>
-
-            <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl"
-               onClick={() => {
-                  if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
-                     document.getElementById("avgRating").classList.remove("bg-black", "text-white");
-                     document.getElementById("avgRating").classList.add("bg-white", "text-black");
-                  } else {
-                     document.getElementById("avgRating").classList.remove("bg-white" , "text-black");
-                     document.getElementById("avgRating").classList.add("bg-black" , "text-white");
-                  }
-
-                  if (filters.includes("avgRating")) {
-                     setfilters(filters.filter(filter => filter !== "avgRating"));
-                  } else {
-                     setfilters([...filters, "avgRating"]);
-                  }
-               }}
-            >4.5+ rated</button>
-
-            <button id="costForTwo" className="border shadow-lg border-black m-3 px-2 rounded-3xl"
-               onClick={() => {
-                  if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
-                     document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
-                     document.getElementById("costForTwo").classList.add("bg-white", "text-black");
-                  } else {
-                     document.getElementById("costForTwo").classList.remove("bg-white", "text-black");
-                     document.getElementById("costForTwo").classList.add("bg-black", "text-white");
-                  }
-
-
-                  if (filters.includes("costForTwo")) {
-                     setfilters(filters.filter(filter => filter !== "costForTwo"));
-                  } else {
-                     setfilters([...filters, "costForTwo"]);
-                  }
-               }}
-            >Less than 300</button>
-         </div>
-         
-         <div id = "body" className= 'text-black  ml-[12%] flex flex-wrap  w-[85%] h-full'>
-      
+            
+            <div id = "body" className= 'text-black  ml-[10%] flex flex-wrap p-5 w-[85%] h-full'>
                {fileterdRestaurantList?.map((restaurant) => (
                   <Link key = {restaurant?.info?.id} to = {"/restaurants/" + restaurant?.info?.id}>
                      { 
@@ -173,10 +169,10 @@ const Body = () => {
                      }
                   </Link>
                ))}
-            
+            </div>
          </div>
-      </div>
-   ) 
+      ) 
+   }
 }
 
 export default Body;

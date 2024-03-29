@@ -5,6 +5,7 @@ const countNonvegcategory = (data) => {
 
    for(let category of categories) {
       let {itemCards} = category;
+      
       for(let cards of itemCards) {
          let vegornot;
          if(cards.card.info.itemAttribute.vegClassifier === "NONVEG") {

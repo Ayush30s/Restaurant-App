@@ -10,14 +10,15 @@ const cartSlice = createSlice({
       addItem : (state, action) => {
          state.items.push(action.payload);
       },
-      removeItem: (state,action) => {
-         state.items.pop();                                                                        
+      removeItem: (state, action) => {
+         const itemIdToRemove = action.payload; // Assuming payload is the item ID to remove
+         state.items = state.items.filter(item => item.id !== itemIdToRemove); 
       },
       clearCart: (state) => {
          //RTK - either mutate the state or return a new state
          // state.items.length = 0;
 
-         return {items: []}; //-> what you return as a new state will rplace the original state by the returned value
+         return {items: []}; //-> what you return as a new state will replace the original state by the returned value
       }
    }
 });
