@@ -1,13 +1,11 @@
 import { React , lazy ,Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import Body from './components/Body';
-import About from './components/About';
-import Contact from './components/Contact';
 import Error from './components/Error';
 import { AppLayput } from './App';
 import { createBrowserRouter , RouterProvider } from "react-router-dom"
 import RestaurantMenu from './components/Menu/RestaurantMenu';
-import Checkout from './components/Checkout/Checkout';
+import CartBody from './components/Checkout/CartBody';
 import FoodTypeRestaurant from './components/ResCollection';
 
 // this will load grocry code on demand on clickking the grocry link React is very fast, so it tries  
@@ -35,18 +33,8 @@ const appRouter = createBrowserRouter([
             element: <Body/>
          },
          {
-            path: "/about",
-            element: <About/>,
-            errorElement: <Error/>
-         },
-         {
             path: "/grocery",
             element: <Suspense fallback ={<h1>Loading....</h1>}><Grocery/></Suspense>,
-            errorElement: <Error/>
-         },
-         {
-            path: "/contact",
-            element: <Contact/>,
             errorElement: <Error/>
          },
          {
@@ -57,7 +45,7 @@ const appRouter = createBrowserRouter([
          },
          {
             path: "/cart",
-            element: <Checkout/>
+            element: <CartBody/>
          },
          {
             path:"/food/collection/id=/:foodId/restaurants",

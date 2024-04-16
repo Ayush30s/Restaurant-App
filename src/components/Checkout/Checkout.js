@@ -1,21 +1,21 @@
 import React from "react";
-import Address from "./Address";
-import Policy from "./Policy";
-import CartBody from "./CartBody";
-import Payment from "./Payment";
 
-
-const Checkout = () => {
+const Checkout = (data) => {
    return (
-      <div className=" bg-slate-400 w-[100%] flex  m-20">
-         <div className="w-[65%]">
-            <Address/>
-            <Payment/>
+      <div className="flex flex-col w-full text-sm m-1 p-3">
+         <div className="flex p-2 bg-white rounded-lg m-1 flex-row justify-between">
+            <h1 className="font-semibold text-xs">Total Amount : </h1>
+            <h1>$1367</h1>
          </div>
-         <div className ="w-[35%]">
-            <CartBody/>
-            <Policy/>
+         <div className="flex p-2 bg-white rounded-lg m-1 flex-row justify-between">
+            <h1 className="font-semibold text-xs">GST and taxes : </h1>
+            <h1>$1</h1>
          </div>
+         <div className="flex p-2 bg-white rounded-lg m-1 flex-row justify-between">
+            <h1 className="font-semibold text-xs">Discount : </h1>
+            <h1>$1367</h1>
+         </div>
+         <button className="bg-gray-500 p-2 m-1 text-white font-semibold">Pay</button>
       </div>
    )
 }

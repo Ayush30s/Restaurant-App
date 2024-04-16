@@ -1,6 +1,4 @@
-const countVegNonvegDishes = (data) => {  
-   console.log(data)
-   
+const countVegNonvegDishes = (data) => {     
    let count = 0;
    let typedish;
 

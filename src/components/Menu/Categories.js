@@ -17,11 +17,11 @@ const Categories = (category) => {
          <div className="flex justify-between" onClick={setVsisble}>
             <div className="font-bold text-sm bg-gray-200 border border-white shadow-xl px-2 py-1 rounded-3xl">{data.title}</div>
             {showItems ? 
-               <button className="px-2 rounded-3xl border border-white shadow-lg text-xs bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
-                  Close
+               <button className="px-2 rounded-xl border border-white shadow-lg text-xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                  ▴
                </button> : 
-               <button className="px-2 rounded-3xl border border-white shadow-lg text-xs bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
-                  Open
+               <button className="px-2 rounded-xl border border-white shadow-lg text-xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                  ▾
             </button>}
          </div>
          <div>

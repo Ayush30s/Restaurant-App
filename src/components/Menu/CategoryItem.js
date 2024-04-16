@@ -13,7 +13,7 @@ const CategoryItem = (category) => {
    const setVisible = (index) => {
       setVisibleIndex(index === visibleIndex ? null : index);
    }
-
+   
    const {vegornot} = useContext(FoodContext);
 
    return (
@@ -28,11 +28,11 @@ const CategoryItem = (category) => {
                         <div onClick={() => setVisible(index)} className="flex justify-between m-2 p-3 border-b-2">
                            <h1 className="font-bold px-2 py-1 rounded-3xl border border-white shadow-xl cursor-pointer bg-gray-200">{ele.title}</h1>
                            {visibleIndex === index ? 
-                              <button id="freez" className= "px-2 rounded-3xl border border-white shadow-lg text-xs bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
-                                 Close
+                              <button id="freez" className= "px-2 rounded-xl text-xl border border-white shadow-lg bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                                 ▴
                               </button> :
-                              <button id="freez" className= "px-2 rounded-3xl border border-white shadow-lg text-xs bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
-                                 Open
+                              <button id="freez" className= "px-2 rounded-xl border border-white shadow-lg text-xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                                 ▾
                               </button>} 
                         </div>
    

@@ -5,7 +5,7 @@ class About extends Component {
    constructor(props) {
       super(props);
       console.log("parent constructor called");
-   }
+   } 
 
    componentDidMount() {
       console.log("parent componentdidMount");

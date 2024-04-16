@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import {CDN_URL} from "../utils/constants"
 import rating from "./ratinig.png"
 
@@ -31,7 +31,7 @@ export const RestaurantCard = (props) => {
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className='z-10 w-[250px] h-[260px] pb-2 rounded-2xl text-gray-800 font-sans font-semibold cursor-pointer my-4 mb-10 hover:p-3 p-2 snap-end'>
+      <div className='z-10 w-[250px] h-[260px] pb-2 rounded-2xl text-gray-600 font-sans font-bold cursor-pointer my-4 mb-10 hover:p-2 p-1 m-1 snap-end'>
          <img className='rounded-2xl w-[100%] h-[68%]'
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
@@ -43,7 +43,7 @@ export const RestaurantCard = (props) => {
                <h3 className="ml-5">{avgRating}</h3>
                <h3 className="ml-3">• {minTime} - {maxTime} mins</h3>
             </div>
-            <h3 className="text-sm font-normal mt-1">{compCuisine}</h3>
+            <h3 className="text-sm font-bold mt-1">{compCuisine}</h3>
          </div>
       </div>
    )

@@ -5,7 +5,6 @@ import { useContext } from "react";
 import FoodContext from "../../utils/FoodContext";
 
 const ItemCards = (data) => {
-   
    const array = data.data;
    
    // food context me restaurabt menu se state variable ko yha le aya aur jab bhi wha button click 

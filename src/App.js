@@ -29,7 +29,7 @@ const AppLayput = () =>{
    }
 
    return (
-      <div className='flex justify-center font-appFont'>
+      <div className='font-appFont'>
          {/* we have provided this app store to the provider and all the components inside it can use the conetent of app store so make it golbal so that any component cna use it we used it n the root level just as usecontext */}
          <Provider store={AppStore}>
             <UserContext.Provider value={{userName : userInfo, setUserInfo}}>
@@ -37,7 +37,6 @@ const AppLayput = () =>{
                <Outlet />
             </UserContext.Provider>
          </Provider>
-
       </div>
    )
 }

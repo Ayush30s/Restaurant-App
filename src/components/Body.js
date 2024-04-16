@@ -6,7 +6,7 @@ import ResSlider from "./RestaurantSlider";
 import BodyFirstSection from "./BodyFirstSection";
 import CardWithLabel from "./RestaurantCard";
 import useInternetStatus from "../utils/OnlineStatus";
-
+import BodyShimmer from "../Shimmer/bodyshimmer";
 
 const Body = () => {
    
@@ -25,10 +25,10 @@ const Body = () => {
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7586175&lng=80.9141368&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
       let newResArray = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-      setIsLoading(true);
-
+      
       setListofRestaurant(newResArray);
       setfileterdRestaurantList(newResArray);
+      setIsLoading(true);
    }
 
    const LabelCard = CardWithLabel(RestaurantCard);
@@ -67,7 +67,7 @@ const Body = () => {
    }
    
    if(!isloading) {
-      return <h1 className="m-64">Loading...</h1>
+      return <BodyShimmer/>
    } else {
       return (
          <div className=" relative top-24 overflow-y-hidden overflow-x-hidden flex flex-col justify-center">
@@ -90,7 +90,7 @@ const Body = () => {
                   }}>Search</button>
                </div>
    
-               <button id ="allres" className="border shadow-lg border-black px-2 m-3 rounded-3xl active:bg-black active:text-white"
+               <button id ="allres" className="border shadow-lg border-black px-2 m-3 rounded-3xl active:bg-black active:text-white hover:shadow-2xl"
                   onClick={() => {
                      for(let fl of filters) {
                         document.getElementById(fl).classList.remove("bg-black", "text-white");
@@ -101,7 +101,7 @@ const Body = () => {
                   }}
                >All Restaurant</button>
    
-               <button id="fast" className="border border-black m-3 px-2 rounded-3xl"
+               <button id="fast" className="border border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
                         document.getElementById("fast").classList.remove("bg-black", "text-white");
@@ -119,7 +119,7 @@ const Body = () => {
                   }}
                >Fast Delivery</button>
    
-               <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl"
+               <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
                         document.getElementById("avgRating").classList.remove("bg-black", "text-white");
@@ -137,7 +137,7 @@ const Body = () => {
                   }}
                >4.5+ rated</button>
    
-               <button id="costForTwo" className="border shadow-lg border-black m-3 px-2 rounded-3xl"
+               <button id="costForTwo" className="border shadow-lg border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
                         document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
@@ -157,18 +157,20 @@ const Body = () => {
                >Less than 300</button>
             </div>
             
-            <div id = "body" className= 'text-black  ml-[10%] flex flex-wrap p-5 w-[85%] h-full'>
-               {fileterdRestaurantList?.map((restaurant) => (
-                  <Link key = {restaurant?.info?.id} to = {"/restaurants/" + restaurant?.info?.id}>
-                     { 
-                        restaurant?.info?.aggregatedDiscountInfoV3?.header ? (
-                           <LabelCard resData = {restaurant}/>
-                        ) : (
-                           <RestaurantCard resData={restaurant}/>
-                        )
-                     }
-                  </Link>
-               ))}
+            <div id = "body" className= 'text-black my-10 ml-[10%] flex flex-wrap p-5 w-[85%] h-full'>
+               {fileterdRestaurantList?.length == 0 ? <h1 className="my-10 mx-72 font-bold text-2xl">No Restaurant Found ¯\(°_o)/¯</h1>  
+                  : 
+                  fileterdRestaurantList?.map((restaurant) => (
+                     <Link key = {restaurant?.info?.id} to = {"/restaurants/" + restaurant?.info?.id}>
+                        { 
+                           restaurant?.info?.aggregatedDiscountInfoV3?.header ? (
+                              <LabelCard resData = {restaurant}/>
+                           ) : (
+                              <RestaurantCard resData={restaurant}/>
+                           )
+                        }
+                     </Link>
+                  ))}
             </div>
          </div>
       ) 

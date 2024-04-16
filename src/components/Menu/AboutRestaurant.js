@@ -8,7 +8,7 @@ const AboutRestaurant = (resdata) => {
    let lastMileTravelString = resdata?.data?.sla?.lastMileTravelString;
    let avgRating = resdata?.data?.avgRating;
    let totalRatings = resdata?.data?.totalRatings;
-   let areaName = resdata?.data?.areaName;
+   let areaName = resdata?.data?.areaName; 
  
    let cusinestring = "";
    resdata?.data?.cuisines.map((el) => {

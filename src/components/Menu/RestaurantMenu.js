@@ -8,6 +8,8 @@ import FoodContext from "../../utils/FoodContext";
 import changeCSS from "../../utils/VegNonveg";
 import countNonvegitem from "../../utils/countVegNonvegitem";
 import countNonvegcategory from "../../utils/countNonvegcategory";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const RestaurantMenu = () => {
@@ -19,6 +21,7 @@ const RestaurantMenu = () => {
 
    //for veg non-veg filter button
    const [foodtype, setfoodtype] = useState(true);
+   const cart = useSelector((store) => store.cart.items);
 
    useEffect(() => {
       fetchData();
@@ -54,7 +57,7 @@ const RestaurantMenu = () => {
       return (
          //this line provide me data about food type (veg or nonveg) in all its child component
          <FoodContext.Provider value={{vegornot : foodtype}}>
-            <div id="resDetail" className="w-[80%] py-4 my-2 mt-20">
+            <div id="resDetail" className="relative top-16 w-[80%] py-4 ml-32">
                <AboutRestaurant data={aboutrestaurant} />
    
                <Offer data={offerdata} />
@@ -85,8 +88,13 @@ const RestaurantMenu = () => {
                            return null;
                         }
                      })}
-                  </div> : <div className=" text-center m-5">We don't serve {foodtype ? "VEG" : "NONVEG"} items</div>
+                  </div> : <div className=" text-center m-5">We don't serve {foodtype ? "VEG" : "NONVEG"} items</div> 
                }
+
+               {cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
+                  <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
+                  <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
+               </div>}
             </div>
          </FoodContext.Provider>
       );

@@ -13,4 +13,4 @@ const freezslice = createSlice({
 });
 
 export const { updateFreez } = freezslice.actions;
-export const freezReducer = freezslice.reducer; // Corrected
+export const freezReducer = freezslice.reducer;
