@@ -35,9 +35,9 @@ const Header = () => {
    
    return (
       <>
-         <div className="bg-white flex justify-between w-[100%] align-middle  text-black fixed z-10 shadow-black drop-shadow-lg">
+         <div className="backdrop-blur-lg flex justify-between bg-transparent w-[100%] align-middle  text-black fixed z-10 shadow-black drop-shadow-lg">
             <div>
-               <img className="w-20 mx-2 rounded-xl" src = {LOGO_URL} alt='ResturantLogo'/>
+               <img className="w-14 m-1 mx-2 rounded-xl" src = {LOGO_URL} alt='ResturantLogo'/>
             </div>
 
             <div className="flex items-center">

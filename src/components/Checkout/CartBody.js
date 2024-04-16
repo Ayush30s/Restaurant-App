@@ -16,7 +16,7 @@ const CartBody = () => {
     }; 
 
     return ( 
-        <div className="h-screen bg-orange-300">
+        <div className="h-screen bg-sky-300">
             {items.length === 0 ? (
                 <div className="fixed top-[40%] left-[35%] overflow-hidden">
                     <div className="mx-12">
@@ -32,7 +32,7 @@ const CartBody = () => {
                     </div>
                 </div>
             ) : (
-                <div className="fixed top-20 w-full h-full p-2 flex flex-row bg-orange-300 overflow-y-hidden">
+                <div className="fixed top-20 w-full h-full p-2 flex flex-row bg-sky-300 overflow-y-hidden">
                     <button className="bg-red-500 top-[74%] left-[3%] absolute p-2 text-white font-semibold text-sm" onClick={handleClearCart}>
                         Clear Cart
                     </button>
