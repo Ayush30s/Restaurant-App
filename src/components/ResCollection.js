@@ -34,12 +34,13 @@ const FoodTypeRestaurant = () => {
       return <BodyShimmer/>
    } else {
       return (
-         <div className="relative top-24 w-full h-full">
+         <div className="w-full h-full p-5">
             <div className=" mx-10">
    
-               <h1 className="font-bold text-4xl">{title}</h1>
-               <h1 className="text-gray-500">{description}</h1>
-   
+               <div className="m-5">
+                  <h1 className="font-semibold text-4xl">{title}</h1>
+                  <i className="text-gray-700">{description}</i>
+               </div>
                <div className="flex flex-wrap"> 
                   {resArray?.map((ele) => {
                      if(ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.Restaurant") {

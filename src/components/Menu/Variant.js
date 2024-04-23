@@ -8,7 +8,9 @@ import Addons from "./Addons";
 import AddonsContext from "../../utils/AddonsContext";
 
 const Variant = (props) => {
+   let restaurantid = props.data.itemDetails.restaurantid;
    const {addons} = props;
+  
    const [usedata,setdata] = useState(0); 
    const [variantSelected, setVariantSelected] = useState(null);
    const [newDetails, setnewdetails] = useState({}); 
@@ -16,14 +18,13 @@ const Variant = (props) => {
    const [showAddons, setshowAddons] = useState(false);
    const [showsizeVariant, setShowsizeVariant] = useState(true);
    const [addonsSelected, setAddonsSelected] = useState(null);
-
+   
+   let {dishname} = props;
    let addonArray = [];
    if(!(addonsSelected === null)) {
       addonArray.push(addonsSelected);
       setAddonsSelected(null);
    }
-
-   console.log(addonArray);
 
    const handleVariantClick = (ele) => {
       toggeldata(ele.price);
@@ -32,7 +33,9 @@ const Variant = (props) => {
       // Update variantSelected in a new immutable way
       const updatedDetails = {
          ...props.data.details, // Spread the existing details
-         variantSelected: ele // Update variantSelected
+         variantSelected: ele, // Update variantSelected
+         restaurantid: restaurantid,
+         name: dishname
       };
       
       setnewdetails(updatedDetails);
@@ -61,10 +64,8 @@ const Variant = (props) => {
       setShowsizeVariant(flag);
    }
 
-   let {dishname} = props;
-
    return (
-      <div className="flex flex-col rounded-2xl fixed max-h-[60%] top-[20%] left-[25%] w-[50%] z-10 bg-white border border-gray-300 bg-white-300">
+      <div className="flex flex-col rounded-2xl pointer-events-auto fixed max-h-[60%] top-[20%] left-[25%] w-[50%] z-10 bg-white border border-gray-300 bg-white-300">
          <div className="flex justify-between mx-7 my-2 border-b-2 py-3 ">
 
             {showAddons ? 
@@ -103,9 +104,9 @@ const Variant = (props) => {
          {
             showAddons
                &&
-               <AddonsContext.Provider value={{ addonsSelected, setAddonsSelected}}>
-                  <Addons data={{ addons, variantSelected, dishname }} />
-               </AddonsContext.Provider>
+            <AddonsContext.Provider value={{ addonsSelected, setAddonsSelected}}>
+               <Addons data={{ addons, variantSelected, dishname}} />
+            </AddonsContext.Provider>
          }
          
          <div className="ml-7 rounded-xl mr-5 my-2 flex justify-between text-sm text-white bg-green-500 font-bold p-2">

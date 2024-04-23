@@ -7,8 +7,8 @@ import { createBrowserRouter , RouterProvider } from "react-router-dom"
 import RestaurantMenu from './components/Menu/RestaurantMenu';
 import CartBody from './components/Checkout/CartBody';
 import FoodTypeRestaurant from './components/ResCollection';
-
-// this will load grocry code on demand on clickking the grocry link React is very fast, so it tries  
+ 
+// this will load grocry code on demand on clickking the grocry link React is very fast, so it tries   
 // to render the code of grocery as fast as possible, but using lazy loading the code react get the code to render. 
 // in 12 milliseconds. So it shows error that the code yje code not found because of the delay in getting it by
 // react. But after 12 milliseconds when I again click the grocery link it fetch the. Code and render it and we can 

@@ -1,6 +1,7 @@
 import React from "react"; 
 import {CDN_URL} from "../utils/constants"
 import rating from "./ratinig.png"
+import Astricks from "./Astrick";
 
 export const RestaurantCard = (props) => {
    const {resData} = props;
@@ -10,15 +11,15 @@ export const RestaurantCard = (props) => {
    let {name, cuisines, cloudinaryImageId, avgRating} = resData?.info;
    let {deliveryTime} = resData?.info?.sla;
 
-   const compressString = (string) => {
+   const compressString = (string,n) => {
       if(string.length > 17) {
-         string = string.substring(0,20) + "...";
+         string = string.substring(0,n) + "...";
       }
       return string;
    }
 
    let stringCuisines = cuisines.join(",\n");
-   let compCuisine = compressString(stringCuisines);
+   let compCuisine = compressString(stringCuisines,30);
 
    let maxTime = Math.ceil(deliveryTime / 5) * 5;
    let minTime = Math.floor(deliveryTime / 5) * 5;
@@ -26,24 +27,24 @@ export const RestaurantCard = (props) => {
       maxTime += 5;
    }
    
-   let newname = compressString(name);
+   let newname = compressString(name,10);
 
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className='z-10 w-[250px] h-[260px] pb-2 rounded-2xl text-gray-600 font-sans font-bold cursor-pointer my-4 mb-10 hover:p-2 p-1 m-1 snap-end'>
-         <img className='rounded-2xl w-[100%] h-[68%]'
+      <div className='z-10 w-[250px] h-[260px] shadow-xl rounded-2xl text-black cursor-pointer m-4 hover:bg-yellow-100 p-1 snap-end'>
+         <img className='rounded-2xl w-[100%] h-[70%]' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
          />
-         <div className="m-1 pb-2">
-            <h3 className="py-1 from-neutral-50">{newname}</h3>
-            <div className="flex text-sm">
-               <img className="absolute top-38 w-4 rounded-full" src={rating}/>
-               <h3 className="ml-5">{avgRating}</h3>
-               <h3 className="ml-3">• {minTime} - {maxTime} mins</h3>
+         <div className="m-2 py-1 rounded-2xl h-[25%]">
+            <div className="flex flex-row justify-between">
+               <h3 className="from-neutral-50 font-bold">{newname}</h3>
+               <div className="flex mt-1 text-[10px]">
+                  <Astricks data = {avgRating}/>
+               </div>
             </div>
-            <h3 className="text-sm font-bold mt-1">{compCuisine}</h3>
+            <h3 className="text-xs my-1">{compCuisine}</h3>
          </div>
       </div>
    )
@@ -57,7 +58,7 @@ const CardWithLabel = (RestaurantCard) => {
       return (
 
          <div id="labelresCard" className="relative w-[260px] h-[260px] rounded-lg cursor-pointer snap-start"> 
-            <label className="absolute left-3 top-3 py-1 px-2 m-1 text-[10px] rounded-2xl text-white bg-black">Promoted</label>
+            <label className="absolute left-6 top-2 py-1 px-2 m-1 text-[10px] rounded-2xl text-white bg-black">Promoted</label>
             <RestaurantCard {...resData}/>
          </div>
 

@@ -39,6 +39,7 @@ const RestaurantMenu = () => {
    let aboutrestaurant = menuList[2]?.card?.card?.info;
    let offerdata = menuList[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
    let accordianitem = menuList[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+   let id = aboutrestaurant?.id;
 
    // In this module i am counting the number of dishes according to veg non veg filter if i donts found a single dish 
    // having the food type as the veg nonveg filter we just render any message else render the dishes 
@@ -56,8 +57,8 @@ const RestaurantMenu = () => {
    } else {
       return (
          //this line provide me data about food type (veg or nonveg) in all its child component
-         <FoodContext.Provider value={{vegornot : foodtype}}>
-            <div id="resDetail" className="relative top-16 w-[80%] py-4 ml-32">
+         <FoodContext.Provider value={{vegornot : foodtype , restaurantid: id}}>
+            <div id="resDetail" className="w-[80%] py-4 ml-32">
                <AboutRestaurant data={aboutrestaurant} />
    
                <Offer data={offerdata} />
@@ -66,7 +67,7 @@ const RestaurantMenu = () => {
                   aboutrestaurant?.veg ? 
                      <span className="text-green-600 text-sm border-green-600 border p-1 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
                   :
-                  <button id="vegbtn" className="static top-10 text-xs px-1 py-1 w-[8%] rounded-2xl m-2 text-white bg-green-700 border shadow-lg" 
+                  <button id="vegbtn" className="static top-10 text-xs px-1 py-1 w-[8%] rounded-2xl m-2 text-white bg-green-700 border shadow-lg " 
                      onClick={() => {
                         changeCSS("vegbtn" ,foodtype);
                         setfoodtype(!foodtype);

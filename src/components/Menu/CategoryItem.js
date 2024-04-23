@@ -19,7 +19,6 @@ const CategoryItem = (category) => {
    return (
          <div className="m-1 p-2 text-sm">
             {data?.map((ele, index) => {
-
                let count = countVegNonvegDishes({ele,vegornot});
 
                if(count > 0) {

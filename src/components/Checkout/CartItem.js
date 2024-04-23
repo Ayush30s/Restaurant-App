@@ -4,11 +4,11 @@ import { removeItem } from "../../Redux/cartslice";
 import { CDN_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 
-const CartItem = (data) => {
+
+const CartItem = (data) => { 
+
    const {variantSelected} = data?.data;
    const {name,id} = data?.data;
-
-   const cart = useSelector((store) => store.cart.items);    
 
    const dispatch = useDispatch();
    const handleRemoveItem = (id) => {
@@ -20,48 +20,50 @@ const CartItem = (data) => {
          string = string.substring(0,40) + "...";
       }
       return string;
-   }
+   } 
 
-   const resID = 747484;
+   const resID = data.data.restaurantid;
+   let dishprice = 0;
 
    let [count, setCount] = useState(1);
    let price = (variantSelected?.price) || (data.data.price / 100);
-   let description = compressString(data.data.description);
 
    return (
-      <div id="cartitems" className=" flex bg-white h-[120px] flex-row rounded-lg justify-between mb-6 p-3 ml-3"> 
-         <div className="mx-2 w-[60%] flex flex-col">
-            <div className="flex flex-row text-sm">
-               <Link to = {"/restaurants/" + resID}><span className="text-black mb-1 font-semibold w-90% hover:text-orange-400"><u>{name}</u></span></Link>
-               {variantSelected?.isVeg === 1 || data.data.itemAttribute?.vegClassifier == 'VEG' ? <span className=" p-1 font-bold text-xs text-green-500 mx-1 ">(veg)</span> : <span  className="p-1 font-bold text-xs text-red-500 mx-1">(non-veg)</span>}
-            </div>
+      <div id="cartitems" className= "w-[90%] h-16 ml-[5%] border-b border-b-gray-200 flex flex-row items-center justify-between my-4 px-1"> 
+         {data.setAmount((count * price))}     
 
-            <div className="flex flex-col text-xs">
-               {variantSelected?.name ? <span className="text-sm font-semibold ">Type : {variantSelected?.name} </span> : <span>{description}</span>}
-               <div className="flex flex-row text-sm">
-                  <h1>Price : </h1> 
-                  <span className = "font-bold mx-2">₹{(price * count).toFixed(2)}</span> 
-               </div>
-               <button alt = "Remove Item" className="w-7 rounded-2xl mt-2 bg-red-500 text-white hover: active:bg-red-600" onClick={() => {
-                  handleRemoveItem(id);
-               }}>x</button>
-            </div>
+         <div className="w-[18%]">
+            <span className=" text-black mb-1 text-sm font-semibold ">{name}</span><Link to = {"/restaurants/" + resID}><h1 className=" text-black mb-1 text-[8px] hover:text-orange-400"> restaurant</h1></Link>
          </div>
 
-         <div className="flex flex-row w-[20%]">
-            <div className="mt-8 h-5 border border-black text-xs rounded-xl">
-               <button className="w-4" onClick={() => {
-                  if(count > 1) {
-                     setCount(count - 1);
-                  }
-               }}>-</button>
-               <button className=" w-8 font-semibold">{count}</button>
-               <button className=" w-5" onClick={() => setCount(count + 1)}>+</button>
-            </div>
+         <div className="w-[10%] p-1 font-bold text-white text-xs mx-1">
+            {variantSelected?.isVeg === 1 || data.data.itemAttribute?.vegClassifier == 'VEG' ? <h1 className="text-center bg-green-500 p-1 rounded-md">(veg)</h1> : <h1 className="text-center bg-red-500 p-1 rounded-md">(n-veg)</h1>}
          </div>
 
-         <div className="w-[13%] m-1">
-            {data.data.imageId ? <img className="h-[100%] w-[95%] rounded-xl" src= {CDN_URL + data.data.imageId}/> : <img className="w-[80px] p-3" src = {"https://static.thenounproject.com/png/340719-200.png"} />}
+         <div className = "w-[10%] font-semibold text-sm mx-2">
+            <h1>₹{(price * count).toFixed(2)}</h1> 
+         </div>
+
+         <button alt = "Remove Item" className="w-[3%] text-center rounded-2xl mt-2 bg-red-500 text-white hover:bg-red-600" onClick={() => {
+            handleRemoveItem(id);
+         }}>x</button>
+         
+         <div className="w-[10%] bg-white border border-black text-xs flex flex-row shadow-2xl rounded-xl">
+            <button className="w-[30%] hover:bg-black hover:text-white rounded-xl m-1" onClick={() => {
+               if(count > 1) {
+                  setCount(count - 1);
+                  data.setAmount(dishprice + price * count)
+               }
+            }}>-</button>
+            <button className="w-[40%] m-1 font-semibold">{count}</button>
+            <button className="w-[30%] hover:bg-black hover:text-white rounded-xl m-1" onClick={() => {
+               setCount(count + 1); 
+               data.setAmount(price * count)
+            }}>+</button>
+         </div>
+
+         <div className="w-[5%] yellow-red-300 m-1">
+            {data.data.imageId ? <img className=" hover:w-[100%] w-[90%] rounded-lg" src= {CDN_URL + data.data.imageId}/> : <img src = {"https://static.thenounproject.com/png/340719-200.png"} />}
          </div>
       </div>  
    )

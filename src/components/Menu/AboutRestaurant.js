@@ -2,13 +2,13 @@ import React from "react";
 
 const AboutRestaurant = (resdata) => {
 
-
    let resname = resdata?.data?.name;
    let cuisines = resdata?.data?.cuisines;
    let lastMileTravelString = resdata?.data?.sla?.lastMileTravelString;
    let avgRating = resdata?.data?.avgRating;
    let totalRatings = resdata?.data?.totalRatings;
    let areaName = resdata?.data?.areaName; 
+   let id = resdata?.data?.id;
  
    let cusinestring = "";
    resdata?.data?.cuisines.map((el) => {

@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React from "react";
 import Dishes from "./Dishes";
 import { useContext } from "react";
 import FoodContext from "../../utils/FoodContext";
+import { useSelector, useDispatch } from "react-redux";
 
 const ItemCards = (data) => {
    const array = data.data;
@@ -11,61 +11,41 @@ const ItemCards = (data) => {
    // hoga state var change hoga aur state va ki value ke accrding data change hoga
    const foodtype = useContext(FoodContext);
 
-   // let Ftype;
-   // if(foodtype.vegornot == 0) {
-   //    Ftype = "NONVEG";
-   // } else {
-   //    Ftype = "VEG";
-   // }
+   const freez = useSelector((store) => store.freez.freezstate);
 
-   // let totaldishes = 0;
-   // let filteredDishes = 0;
-
-   // array.map((ele) => {
-   //    totaldishes++;
-   //    if(ele.card.info.itemAttribute.vegClassifier === Ftype) {
-   //       filteredDishes++;
-   //    }
-   // });
-
-   // console.log("ItemList : " , totaldishes);
-   // console.log("Itemlist : " , filteredDishes);
-
-      return (
-      
-         <div className="m-2">
-            {array.map((ele) => {
-               //agr foodtype true hi mtlb veg aur dish type bhi true hi mtlb veg then show veg dishes only
-               if(foodtype.vegornot && ele.card.info.isVeg) {
-                  return (
-                     <div key={ele.title}>
-                        <div>
-                           <h1>{ele.title}</h1>
-                           <p>{ele.description}</p>
-                        </div>
-   
-                        <Dishes data = {ele}/>
+   return (
+      <div className= "m-2">
+         {array.map((ele) => {
+            //agr foodtype true hi mtlb veg aur dish type bhi true hi mtlb veg then show veg dishes only
+            if(foodtype.vegornot && ele.card.info.isVeg) {
+               return (
+                  <div key={ele.title}>
+                     <div>
+                        <h1>{ele.title}</h1>
+                        <p>{ele.description}</p>
                      </div>
-                  )
-               }
-   
-               // agr foodtype false hi mtlb non-veg aur dish type bhi false hi mtlb non-veg then show non-veg dishes only
-               if(!foodtype.vegornot && !ele.card.info.isVeg) {
-                  return (
-                     <div key={ele.title}>
-                        <div>
-                           <h1>{ele.title}</h1>
-                           <p>{ele.description}</p>
-                        </div>
-   
-                        <Dishes data = {ele}/>
+
+                     <Dishes data = {ele}/>
+                  </div>
+               )
+            }
+
+            // agr foodtype false hi mtlb non-veg aur dish type bhi false hi mtlb non-veg then show non-veg dishes only
+            if(!foodtype.vegornot && !ele.card.info.isVeg) {
+               return (
+                  <div key={ele.title}>
+                     <div>
+                        <h1>{ele.title}</h1>
+                        <p>{ele.description}</p>
                      </div>
-                  )
-               }
-            })}
-         </div>
-      );
-   
+
+                     <Dishes data = {ele}/>
+                  </div>
+               )
+            }
+         })}
+      </div>
+   );
 }
 
 export default ItemCards;

@@ -70,7 +70,7 @@ const Body = () => {
       return <BodyShimmer/>
    } else {
       return (
-         <div className=" relative top-24 overflow-y-hidden overflow-x-hidden flex flex-col justify-center">
+         <div className=" overflow-y-hidden overflow-x-hidden flex flex-col justify-center">
             <BodyFirstSection/>
             
             <ResSlider resData={listofRestaurants}/>
@@ -90,7 +90,7 @@ const Body = () => {
                   }}>Search</button>
                </div>
    
-               <button id ="allres" className="border shadow-lg border-black px-2 m-3 rounded-3xl active:bg-black active:text-white hover:shadow-2xl"
+               <button id ="allres" className="border  border-black px-2 m-3 rounded-3xl active:bg-black active:text-white shadow-2xl"
                   onClick={() => {
                      for(let fl of filters) {
                         document.getElementById(fl).classList.remove("bg-black", "text-white");
@@ -101,7 +101,7 @@ const Body = () => {
                   }}
                >All Restaurant</button>
    
-               <button id="fast" className="border border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
+               <button id="fast" className="border border-black m-3 px-2 rounded-3xl shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
                         document.getElementById("fast").classList.remove("bg-black", "text-white");
@@ -119,7 +119,7 @@ const Body = () => {
                   }}
                >Fast Delivery</button>
    
-               <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
+               <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
                         document.getElementById("avgRating").classList.remove("bg-black", "text-white");
@@ -137,7 +137,7 @@ const Body = () => {
                   }}
                >4.5+ rated</button>
    
-               <button id="costForTwo" className="border shadow-lg border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
+               <button id="costForTwo" className="border shadow-2xl border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
                   onClick={() => {
                      if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
                         document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
