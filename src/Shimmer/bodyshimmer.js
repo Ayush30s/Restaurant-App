@@ -3,7 +3,7 @@ import CardShimmer from "./Cardshimmer";
 
 const BodyShimmer = () => {
    const shimmerCards = [];
-   for (let i = 0; i < 20; i++) {
+   for (let i = 0; i < 40; i++) {
       shimmerCards.push(<CardShimmer key={i} />);
    }
 

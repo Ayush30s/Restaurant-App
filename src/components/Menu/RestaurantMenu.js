@@ -10,7 +10,8 @@ import countNonvegitem from "../../utils/countVegNonvegitem";
 import countNonvegcategory from "../../utils/countNonvegcategory";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import BlurContext from "../../utils/BlurContext";
+import { useContext } from "react";
 
 const RestaurantMenu = () => {
    const resIdObj = useParams();
@@ -36,6 +37,8 @@ const RestaurantMenu = () => {
       setMenuList(newmenudata); 
    }
 
+   const [dishclicked, setdishclicked] = useState(false);
+
    let aboutrestaurant = menuList[2]?.card?.card?.info;
    let offerdata = menuList[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
    let accordianitem = menuList[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
@@ -58,45 +61,51 @@ const RestaurantMenu = () => {
       return (
          //this line provide me data about food type (veg or nonveg) in all its child component
          <FoodContext.Provider value={{vegornot : foodtype , restaurantid: id}}>
-            <div id="resDetail" className="w-[80%] py-4 ml-32">
-               <AboutRestaurant data={aboutrestaurant} />
-   
-               <Offer data={offerdata} />
-   
-               {/* veg or not - Button */
-                  aboutrestaurant?.veg ? 
-                     <span className="text-green-600 text-sm border-green-600 border p-1 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
-                  :
-                  <button id="vegbtn" className="static top-10 text-xs px-1 py-1 w-[8%] rounded-2xl m-2 text-white bg-green-700 border shadow-lg " 
-                     onClick={() => {
-                        changeCSS("vegbtn" ,foodtype);
-                        setfoodtype(!foodtype);
-                     }}
-                  >{foodtype ? "VEG" : "NONVEG"}</button> 
-               }
-               
-               {  
-                  totalOnetypeItem > 0 ?
-                  <div>
-                     {accordianitem?.map((ele) => {
-                        if (ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") {
-                           let count = countNonvegitem({ele, foodtype});
-                           return count > 0 ? <Categories data={ele} /> : null;
-                        } else if(ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory") {
-                           let count = countNonvegcategory({ele, foodtype});
-                           return count > 0 ? <Categories data={ele} /> : null;
-                        } else {
-                           return null;
-                        }
-                     })}
-                  </div> : <div className=" text-center m-5">We don't serve {foodtype ? "VEG" : "NONVEG"} items</div> 
-               }
+            <BlurContext.Provider value={{ dishclicked, setdishclicked }}>
 
-               {cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
-                  <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
-                  <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
-               </div>}
-            </div>
+               <div id="resDetail" className="w-[80%] py-4 ml-32">
+                  <AboutRestaurant data={aboutrestaurant} />
+      
+                  <Offer data={offerdata} />
+      
+                  {/* veg or not - Button */
+                     aboutrestaurant?.veg ? 
+                        <span className="text-green-600 text-sm border-green-600 border p-1 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
+                     :
+                     <button id="vegbtn" className="static top-10 text-xs px-1 py-1 w-[8%] rounded-2xl m-2 text-white bg-green-700 border shadow-lg " 
+                        onClick={() => {
+                           changeCSS("vegbtn" ,foodtype);
+                           setfoodtype(!foodtype);
+                        }}
+                     >{foodtype ? "VEG" : "NONVEG"}</button> 
+                  }
+                  
+                  {  
+                     totalOnetypeItem > 0 ?
+                     <div>
+                        {accordianitem?.map((ele) => {
+                           if (ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") {
+                              let count = countNonvegitem({ele, foodtype});
+                              return count > 0 ? <Categories data={ele} /> : null;
+                           } else if(ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory") {
+                              let count = countNonvegcategory({ele, foodtype});
+                              return count > 0 ? <Categories data={ele} /> : null;
+                           } else {
+                              return null;
+                           } 
+                        })}
+                     </div> : <div className=" text-center m-5">We don't serve {foodtype ? "VEG" : "NONVEG"} items</div> 
+                  }
+
+                  {cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
+                     <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
+                     <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
+                  </div>}
+               </div>
+               {
+                  dishclicked && <div className="newdiv absolute top-0 w-[100%] h-[15000px] z-20 backdrop-blur-md"></div>
+               }
+            </BlurContext.Provider>
          </FoodContext.Provider>
       );
    }

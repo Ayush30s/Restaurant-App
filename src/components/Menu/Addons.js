@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 import AddonsList from "./AddonsList";
 
-const Addons = (data) => { 
-   
+const Addons = (data) => {    
    const {variantSelected} = data.data;
-   let type = variantSelected.name.split(' ')[0];
+   let type = variantSelected.name?.split(' ')[0];
 
    type = '(' + type + ')';
    let type2 = type[1].toLowerCase() + type.slice(2);
@@ -19,20 +18,20 @@ const Addons = (data) => {
          {data.data.addons?.map((ele,index) => {
 
             let choices = ele?.choices;
+            const {groupName} = ele;
             let array = ele.groupName.split(' ');
-           
+         
             if(array.includes(type) || array.includes(type2)) {
                flag = true;
                return (
                   <div key={index} className="my-2 ml-8 mr-4 p-2 rounded-lg">
                      <div>
                         <h1 className="font-semibold">{ele.groupName}</h1>
-                        <AddonsList data = {{choices,type,dishname}}/>
+                        <AddonsList data = {{choices,dishname,groupName}}/>
                      </div>
                   </div>
                );
-            }
-            
+            }  
          })}
 
          {!flag && data.data.addons?.map((ele,index) => {
@@ -41,14 +40,13 @@ const Addons = (data) => {
          let array = ele.groupName.split(' ');
    
          return (
-            <div key={index} className="my-2 ml-8 mr-4 p-2 rounded-lg">
-               <div>
-                  <h1 className="font-semibold">{ele.groupName}</h1>
-                  <AddonsList data = {{choices,type,dishname}}/>
+               <div key={index} className="my-2 ml-8 mr-4 p-2 rounded-lg">
+                  <div>
+                     <h1 className="font-semibold">{ele.groupName}</h1>
+                     <AddonsList data = {{choices,type,dishname}}/>
+                  </div>
                </div>
-            </div>
-         );
-
+            );
          })}
       </div>
    );

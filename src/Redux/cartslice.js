@@ -40,14 +40,14 @@ const cartSlice = createSlice({
                state.items.push(action.payload);
             }
          }
-      },  
+      },
       removeItem: (state, action) => {
          const itemIdToRemove = action.payload; // payload is the item ID to remove
        
          // Return a new state object with the updated items array
          return {
            ...state,
-           items: state.items.filter(item => item.id !== itemIdToRemove)
+           items: state.items.filter(item => (item.name) !== itemIdToRemove)
          };
       },
       clearCart: (state) => {
@@ -62,5 +62,5 @@ const cartSlice = createSlice({
    }
 });
 
-export const { addItem, removeItem, clearCart, updateCart } = cartSlice.actions;
+export const { addItem, removeItem, clearCart, updateCart, updateProperty } = cartSlice.actions;
 export default cartSlice.reducer;

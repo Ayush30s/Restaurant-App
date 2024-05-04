@@ -32,7 +32,7 @@ const ResSlider = ({ resData }) => {
          <div id="ResSlider" className=" mt-8 mx-24 flex flex-col h-[40%] pt-5">
             <h1 className="text-2xl ml-2 mb-4 font-semibold">Famous Restaurants in Your City</h1>
             
-            <div className="flex overflow-x-scroll touch-auto custom-scrollbar rounded-2xl snap-x">
+            <div className="flex overflow-x-scroll touch-auto custom-scrollbar p-2 rounded-2xl snap-x">
                {topResArray?.map((restaurant) => (
                   <Link key={restaurant?.info?.id} to={"/restaurants/" + restaurant?.info?.id}>
                      { 

@@ -8,7 +8,7 @@ import { useContext } from "react";
 const CategoryItem = (category) => {
    
    const data = category.data.categories;
-   const [visibleIndex, setVisibleIndex] = useState(null);
+   const [visibleIndex, setVisibleIndex] = useState(0);
 
    const setVisible = (index) => {
       setVisibleIndex(index === visibleIndex ? null : index);

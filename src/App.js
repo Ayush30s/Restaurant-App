@@ -3,7 +3,7 @@ import Header from './components/Header';
 import { Outlet } from 'react-router-dom';
 import useInternetStatus from './utils/OnlineStatus';
 import { useEffect, useState } from 'react';
-import UserContext from './utils/UserContext';
+import AddonsContext from './utils/AddonsContext';
 import { Provider } from 'react-redux';
 import AppStore from './Redux/AppStore';
 
@@ -12,13 +12,7 @@ import AppStore from './Redux/AppStore';
 const AppLayput = () =>{
    let onlinestat = useInternetStatus();
 
-   //AUTH CODE :Make an API call and get the data of user
-   const data = {
-      name : "Ayush Lala",
-      city : "Lucknow"
-   }
-
-   const [userInfo, setUserInfo] = useState(data.name);
+   const [addonsSelected, setAddonsSelected] = useState([]);
 
    if(!onlinestat) {
       return (
@@ -32,10 +26,10 @@ const AppLayput = () =>{
       <div className='font-appFont'>
          {/* we have provided this app store to the provider and all the components inside it can use the conetent of app store so make it golbal so that any component cna use it we used it n the root level just as usecontext */}
          <Provider store={AppStore}>
-            <UserContext.Provider value={{userName : userInfo, setUserInfo}}>
+            <AddonsContext.Provider value={{ addonsSelected, setAddonsSelected }}>  
                <Header />
                <Outlet />
-            </UserContext.Provider>
+            </AddonsContext.Provider>
          </Provider>
       </div>
    )

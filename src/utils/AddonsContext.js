@@ -1,9 +1,5 @@
 import { createContext } from 'react';
 
-const AddonsContext = createContext({
-  addonsSelected: [],
-  setAddonsSelected: () => {},
-  addonarray: []
-});
+const AddonsContext = createContext({Name : "ayush"});
 
 export default AddonsContext;

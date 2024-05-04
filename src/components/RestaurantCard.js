@@ -8,7 +8,7 @@ export const RestaurantCard = (props) => {
 
    // Optional chaining is a feature introduced in JavaScript that React developers often use to handle properties that may not exist at runtime.
    // It allows you to access deeply nested properties of an object without causing an error if an intermediate property is null or undefined.
-   let {name, cuisines, cloudinaryImageId, avgRating} = resData?.info;
+   let {name, cuisines, cloudinaryImageId, avgRating, isVeg} = resData?.info;
    let {deliveryTime} = resData?.info?.sla;
 
    const compressString = (string,n) => {
@@ -32,15 +32,15 @@ export const RestaurantCard = (props) => {
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className='z-10 w-[250px] h-[260px] shadow-xl rounded-2xl text-black cursor-pointer m-4 hover:bg-yellow-100 p-1 snap-end'>
-         <img className='rounded-2xl w-[100%] h-[70%]' 
+      <div className='z-10 w-[260px] h-[260px] shadow-xl rounded-lg text-black cursor-pointer m-4 hover:bg-yellow-100 hover:border hover:border-yellow-100 p-1 snap-end'>
+         <img className='rounded-xl w-[100%] h-[70%]' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
          />
-         <div className="m-2 py-1 rounded-2xl h-[25%]">
+         <div className="m-2 py-1 rounded-lg h-[25%]">
             <div className="flex flex-row justify-between">
-               <h3 className="from-neutral-50 font-bold">{newname}</h3>
-               <div className="flex mt-1 text-[10px]">
+               <h3 className=" font-semibold">{newname}</h3>
+               <div className="flex mt-1 text-[8px]">
                   <Astricks data = {avgRating}/>
                </div>
             </div>
