@@ -5,11 +5,11 @@ import { CDN_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 
 const CartItem = (data) => { 
-   let [count, setCount] = useState(1);
-   const {name,id} = data?.data;
+   const [count, setCount] = useState(1);
+   const {name} = data?.data;
 
    const resID = data.data.restaurantid;
-   let price = (data.data.totalPrice == undefined ?  data.data.price / 100 : data.data.totalPrice);
+   let price = Math.round(data.data.totalPrice == undefined ?  data.data.price / 100 : data.data.totalPrice);
 
    const dispatch = useDispatch();
    const handleRemoveItem = (name) => {

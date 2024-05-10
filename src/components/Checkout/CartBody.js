@@ -9,13 +9,13 @@ const CartBody = () => {
    const items = useSelector((store) => store.cart.items);
    
    const [totalAmount, setTotalamount] = useState(0);
-
+   
    useEffect(() => {
       let val = 0;
       for(let ele of items) {
-         val += (ele.totalPrice ? ele.totalPrice :  ele.price);
+         val += (ele.totalPrice !== undefined ? Math.round(ele.totalPrice) :  Math.round(ele.price / 100));
       }
-      setTotalamount(val/100);
+      setTotalamount(val);
    }, [items]);
 
    const dispatch = useDispatch();

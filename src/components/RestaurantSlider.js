@@ -19,18 +19,22 @@ const ResSlider = ({ resData }) => {
    const fetchData = async () => {
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.846251&lng=80.94902880&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
-      let newResArray = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      let newResArray = json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       
       setTopResArray(newResArray);
       setIsLoading(true);
+   }
+
+   if(topResArray == undefined) {
+      return <h1 className="text-lg absolute top-[80%] left-[40%]">API DATA IS NOT PRESENT AT THIS TIME</h1>
    }
 
    if(!isloading) {
       return <BodyScrollSectionShimmer/>
    } else {
       return ( 
-         <div id="ResSlider" className=" mt-8 mx-24 flex flex-col h-[40%] pt-5">
-            <h1 className="text-2xl ml-2 mb-4 font-semibold">Famous Restaurants in Your City</h1>
+         <div id="ResSlider" className=" mt-8 mx-24 flex flex-col h-[400px] pt-5">
+            <h1 className="text-2xl mb-4 font-semibold">Famous Restaurants in Your City</h1>
             
             <div className="flex overflow-x-scroll touch-auto custom-scrollbar p-2 rounded-2xl snap-x">
                {topResArray?.map((restaurant) => (

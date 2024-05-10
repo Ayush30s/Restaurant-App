@@ -42,7 +42,7 @@ const cartSlice = createSlice({
          }
       },
       removeItem: (state, action) => {
-         const itemIdToRemove = action.payload; // payload is the item ID to remove
+         const itemIdToRemove = action.payload; // payload is the item name to remove
        
          // Return a new state object with the updated items array
          return {

@@ -88,7 +88,7 @@ const RestaurantMenu = () => {
                               let count = countNonvegitem({ele, foodtype});
                               return count > 0 ? <Categories data={ele} /> : null;
                            } else if(ele.card.card["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory") {
-                              let count = countNonvegcategory({ele, foodtype});
+                              let count = countNonvegcategory({ele, foodtype}); 
                               return count > 0 ? <Categories data={ele} /> : null;
                            } else {
                               return null;
@@ -97,11 +97,14 @@ const RestaurantMenu = () => {
                      </div> : <div className=" text-center m-5">We don't serve {foodtype ? "VEG" : "NONVEG"} items</div> 
                   }
 
-                  {cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
-                     <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
-                     <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
-                  </div>}
+                  {
+                     cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
+                        <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
+                        <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
+                     </div>
+                  }
                </div>
+
                {
                   dishclicked && <div className="newdiv absolute top-0 w-[100%] h-[15000px] z-20 backdrop-blur-md"></div>
                }
