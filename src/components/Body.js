@@ -25,7 +25,7 @@ const Body = () => {
       const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7586175&lng=80.9141368&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
       const json = await data.json();
       console.log(json);
-      let newResArray = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      let newResArray = json.data?.cards[2]?.card?.card?.gridElements ? json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants : json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       
       setListofRestaurant(newResArray);
       setfileterdRestaurantList(newResArray);
@@ -76,7 +76,7 @@ const Body = () => {
             <BodyFirstSection/>
             
             <ResSlider resData={listofRestaurants}/>
-            {listofRestaurants ? <>
+            {listofRestaurants.length > 0 ? <>
                <div className='flex justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
                   <div className="mt-1">
                      <input type="text" className = "px-3 rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none " placeholder="Search Food" onChange={(event) => {

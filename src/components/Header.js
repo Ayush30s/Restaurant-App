@@ -44,7 +44,7 @@ const Header = () => {
    return (
       <>  
          {searchPlace && 
-            <div id="header-id" className=" border border-black fixed z-20 h-[100%] w-[30%] bg-white flex flex-col justify-between">
+            <div id="header-id" className="lg:bg-red-500 border border-black fixed z-20 h-[100%] w-[30%]  flex flex-col justify-between">
                <input placeholder="Enter location" className="w-[100%] p-3 bg-black text-white" onChange={() => {
                   fetchData(); 
                }}/>

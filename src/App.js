@@ -7,8 +7,6 @@ import AddonsContext from './utils/AddonsContext';
 import { Provider } from 'react-redux';
 import AppStore from './Redux/AppStore';
 
-
-
 const AppLayput = () =>{
    let onlinestat = useInternetStatus();
 
@@ -23,8 +21,8 @@ const AppLayput = () =>{
    }
 
    return (
-      <div className='font-appFont'>
-         {/* we have provided this app store to the provider and all the components inside it can use the conetent of app store so make it golbal so that any component cna use it we used it n the root level just as usecontext */}
+      <div className='font-appFont'> {/* Add bg-white to override sm:bg-red-300 for larger screens */}
+         {/* we have provided this app store to the provider and all the components inside it can use the content of app store so make it global so that any component can use it we used it in the root level just as usecontext */}
          <Provider store={AppStore}>
             <AddonsContext.Provider value={{ addonsSelected, setAddonsSelected }}>  
                <Header />

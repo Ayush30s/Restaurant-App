@@ -18,6 +18,7 @@ const BodyFirstSection = () => {
       const data = await fetch(FIRST_PAGE);
       const json = await data.json();
       let newarray = json?.data?.cards[0]?.card?.card?.imageGridCards?.info;
+      console.log(newarray)
       
       setmyMindFood(newarray);
       setIsLoading(true);

@@ -3,7 +3,6 @@ import {CDN_URL} from "../utils/constants"
 import Astricks from "./Astrick";
 
 export const RestaurantCard = (props) => {
-   console.log(props)
    const {resData} = props;
 
    // Optional chaining is a feature introduced in JavaScript that React developers often use to handle properties that may not exist at runtime.
