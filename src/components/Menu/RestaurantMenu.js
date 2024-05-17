@@ -11,7 +11,6 @@ import countNonvegcategory from "../../utils/countNonvegcategory";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BlurContext from "../../utils/BlurContext";
-import { useContext } from "react";
 
 const RestaurantMenu = () => {
    const resIdObj = useParams();
@@ -31,7 +30,6 @@ const RestaurantMenu = () => {
    const fetchData = async () => {
       const data = await fetch(MENU__API + resId);
       const json = await data.json();
-      console.log(json);
       setIsLoading(true);
 
       let newmenudata = json.data.cards;
@@ -43,7 +41,6 @@ const RestaurantMenu = () => {
    let aboutrestaurant = menuList[2]?.card?.card?.info;
    let offerdata = menuList[3]?.card?.card?.gridElements?.infoWithStyle?.offers;
    let accordianitem = menuList[4]?.groupedCard ? menuList[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards : menuList[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-   console.log(accordianitem)
    let id = aboutrestaurant?.id;
 
    // In this module i am counting the number of dishes according to veg non veg filter if i donts found a single dish 
