@@ -28,7 +28,7 @@ const RestaurantMenu = () => {
    }, []);
 
    const fetchData = async () => {
-      const data = await fetch(`https://backendfood-app.onrender.com/api/restaurants/Menu?lat=26.7586175&lng=80.9141368&${resId}`);
+      const data = await fetch(`https://backendfood-app.onrender.com/api/restaurants/Menu?lat=26.7586175&lng=80.9141368&resId=${resId}`);
       const json = await data.json();
       setIsLoading(true);
 
