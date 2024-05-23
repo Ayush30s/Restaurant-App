@@ -18,7 +18,7 @@ const AppLayput = () =>{
             <h1>Bad Internet connection!!!</h1>
          </div>
       );
-   }
+   } 
 
    return (
       <div className='font-appFont'> {/* Add bg-white to override sm:bg-red-300 for larger screens */}

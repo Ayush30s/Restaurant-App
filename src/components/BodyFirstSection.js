@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { FIRST_PAGE } from "../utils/constants"; 
 import MiniCards from "./MiniCards"
 import { Link } from "react-router-dom";
 import BodyFirstSectionShimmer from "../Shimmer/BodyFirstSecShimmer"; 
@@ -11,11 +10,11 @@ const BodyFirstSection = () => {
    let [isloading, setIsLoading] = useState(false);
 
    useEffect(() => {
-      fetchData({FIRST_PAGE});
+      fetchData();
    }, []);
 
    const fetchData = async () => {
-      const data = await fetch(FIRST_PAGE);
+      const data = await fetch(`https://backendfood-app.onrender.com/api/restaurants/bodyfirstpart?lat=26.7586175&lng=80.9141368`);
       const json = await data.json();
       let newarray = json?.data?.cards[0]?.card?.card?.imageGridCards?.info;
       

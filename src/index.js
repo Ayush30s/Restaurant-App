@@ -21,7 +21,7 @@ import CheckoutComp from './components/Checkout/CheckoutComp';
 
 const Grocery = lazy(() => import('./components/Grocery'));
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')); 
 const appRouter = createBrowserRouter([
    {
       path: "/",
@@ -67,4 +67,35 @@ root.render(
    So, to render a desired page, we create an 'appRouter' using "react-router-dom" that renders,
    the 'appRouter' which renders the page according to the paths defined inside the children.*/
    <RouterProvider router={appRouter}/>
-);
+);   
+
+
+// app.get('/api/restaurants', (req, res) => { 
+//    const { lat, lng } = req.query;
+//    console.log(req.query);
+//    const url = https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&page_type=DESKTOP_WEB_LISTING;
+ 
+//    fetch(url, {
+//      headers: {
+//        'Content-Type': 'application/json',
+//        'Access-Control-Allow-Origin': '*',
+//        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+//      }
+//    })
+//      .then(response => {
+//        if (!response.ok) {
+//          throw new Error('Network response was not ok');
+//        }
+//        return response.json();
+//      })
+//      .then(data => {
+//        res.json(data);
+//      })
+//      .catch(error => {
+//        console.error(error);
+//        res.status(500).send('An error occurred');
+//      });
+//  });
+//  [21/05, 10:39 pm] +91 93054 30390: const fetch = require('cross-fetch');
+//  [21/05, 10:39 pm] +91 93054 30390: npm i cross-fetch
+ 

@@ -18,11 +18,11 @@ const Body = () => {
    let [isloading, setIsLoading] = useState(false);
 
    useEffect(() => {
-      fetchData();
+      fetchData(); 
    }, []);
 
    const fetchData = async () => {     
-      const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7586175&lng=80.9141368&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+      const data = await fetch('https://backendfood-app.onrender.com/api/restaurants?lat=26.7586175&lng=80.9141368');
       const json = await data.json();
       let newResArray = json.data?.cards[2]?.card?.card?.gridElements ? json.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants : json.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
       
