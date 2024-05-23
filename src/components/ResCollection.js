@@ -14,7 +14,7 @@ const FoodTypeRestaurant = () => {
    let [isloading, setIsLoading] = useState(false);
 
    const fetchData = async() => {
-      const ResCollection = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.7586175&lng=80.9141368&collection=" + `${foodId.foodId}` + "&tags=layout_CCS_NorthIndian&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+      const ResCollection = await fetch(`https://backendfood-app.onrender.com/api/restaurants/Foodtype/resCollcetion?lat={5&lng=80.9141368&foodId=${foodId.foodId}`);
       const json = await ResCollection.json();
       setRestaurantCollection(json);
       setIsLoading(true);
