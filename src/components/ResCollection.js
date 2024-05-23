@@ -7,14 +7,14 @@ import CardWithLabel from "./RestaurantCard";
 import BodyShimmer from "../Shimmer/bodyshimmer";
 
 const FoodTypeRestaurant = () => {
-
    const foodId = useParams();
 
    const [RestaurantCollection, setRestaurantCollection] = useState([]);
    let [isloading, setIsLoading] = useState(false);
 
    const fetchData = async() => {
-      const ResCollection = await fetch(`https://backendfood-app.onrender.com/api/restaurants/Foodtype/resCollcetion?lat={5&lng=80.9141368&foodId=${foodId.foodId}`);
+      //correct
+      const ResCollection = await fetch(`https://backendfood-app.onrender.com/api/restaurants/Foodtype/resCollcetion?lat=26.7586175&lng=80.9141368&foodId=${foodId.foodId}`);
       const json = await ResCollection.json();
       setRestaurantCollection(json);
       setIsLoading(true);
