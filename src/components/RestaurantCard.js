@@ -31,15 +31,15 @@ export const RestaurantCard = (props) => {
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className='z-10 w-[260px] h-[260px] shadow-xl rounded-lg text-black cursor-pointer m-[10px]  hover:bg-gray-100 p-[5px] snap-end'>
-         <img className='rounded-xl w-[100%] h-[70%]' 
+      <div className=' sm:flex sm:flex-row md:flex-col md:z-10 md:w-[260px] md:h-[260px] sm:w-[500px] sm:h-[200px] shadow-xl rounded-lg text-black cursor-pointer m-[10px]  hover:bg-gray-100 p-[5px] snap-end'>
+         <img className='rounded-xl md:w-[100%] md:h-[70%] sm:w-[50%] sm:h-[100%]' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
          />
-         <div className="m-2 py-1 rounded-lg h-[25%]">
-            <div className="flex flex-row justify-between">
-               <h3 className=" font-semibold">{newname}</h3>
-               <div className="flex mt-1 text-[8px]">
+         <div className="m-2 py-1 rounded-lg md:h-[25%] flex md:flex-col sm:flex-col">
+            <div className="flex sm:flex-col md:flex-row sm:justify-between">
+               <h3 className=" font-semibold md:text-[16px] sm:text-2xl">{newname}</h3>
+               <div className="flex mt-2 md:text-[12px]">
                   <Astricks data = {avgRating}/>
                </div>
             </div>
