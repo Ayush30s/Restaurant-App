@@ -71,7 +71,7 @@ const Body = () => {
       return <BodyShimmer/>
    } else {
       return (
-         <div className=" overflow-y-hidden overflow-x-hidden flex flex-col justify-center">
+         <div className="overflow-y-hidden flex flex-col overflow-x-hidden justify-center">
             <BodyFirstSection/>
             
             <ResSlider resData={listofRestaurants}/>
@@ -158,7 +158,7 @@ const Body = () => {
                   >Less than 300</button>
                </div>
                
-               <div id = "body" className= ' text-black my-10 ml-[8%] flex flex-wrap  w-[85%] h-full'>
+               <div id = "body" className= ' flex flex-wrap justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
                   {fileterdRestaurantList?.length == 0 ? <h1 className="my-10 mx-72 font-bold text-2xl">No Restaurant Found ¯\(°_o)/¯</h1>  
                      : 
                      fileterdRestaurantList?.map((restaurant) => (

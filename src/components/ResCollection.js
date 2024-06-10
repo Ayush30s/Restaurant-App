@@ -36,7 +36,6 @@ const FoodTypeRestaurant = () => {
       return (
          <div className="w-full h-full "> 
             <div className = "mx-20 my-4">
-   
                <div className="mx-3 my-5">
                   <h1 className="font-semibold text-4xl">{title}</h1>
                   <i className="text-gray-700">{description}</i>

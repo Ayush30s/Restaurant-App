@@ -10,7 +10,7 @@ export const MiniCards = (props) => {
    
    return(
       <div className="z-10 snap-start w-[170px] h-[200px] p-1 hover:p-3">
-         <img src={CDN_URL+imageId}/>
+         <img clas src={CDN_URL+imageId}/>
       </div>
    )
 }

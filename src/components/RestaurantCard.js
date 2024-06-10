@@ -18,7 +18,8 @@ export const RestaurantCard = (props) => {
    }
 
    let stringCuisines = cuisines.join(",\n");
-   let compCuisine = compressString(stringCuisines,30);
+   let cuisinelen = window.innerWidth / 2 < 500 ? 100 : 20;
+   let compCuisine = compressString(stringCuisines,cuisinelen);
 
    let maxTime = Math.ceil(deliveryTime / 5) * 5;
    let minTime = Math.floor(deliveryTime / 5) * 5;
@@ -26,24 +27,26 @@ export const RestaurantCard = (props) => {
       maxTime += 5;
    }
    
-   let newname = compressString(name,10);
+   let namelen = window.innerWidth/2 < 500 ? 17 : 10;
+   console.log(window.innerWidth);
+   let newname = compressString(name,namelen);
 
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className=' sm:flex sm:flex-row md:flex-col md:z-10 md:w-[260px] md:h-[260px] sm:w-[500px] sm:h-[200px] shadow-xl rounded-lg text-black cursor-pointer m-[10px]  hover:bg-gray-100 p-[5px] snap-end'>
-         <img className='rounded-xl md:w-[100%] md:h-[70%] sm:w-[50%] sm:h-[100%]' 
+      <div className='md:bg-green-100 lg:bg-purple-300 md:w-[700px] md:h-[250px] md:p-2 flex md:flex-row lg:flex-col lg:justify-center z-10 lg:w-[260px] lg:h-[260px] shadow-xl rounded-lg text-black cursor-pointer lg:m-[10px] hover:bg-gray-100 lg:p-[5px] snap-end'>
+         <img className='rounded-xl md:m-2 md:w-[50%] md:h-[100%] lg:w-[100%] lg:h-[70%] ' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
          />
-         <div className="m-2 py-1 rounded-lg md:h-[25%] flex md:flex-col sm:flex-col">
-            <div className="flex sm:flex-col md:flex-row sm:justify-between">
-               <h3 className=" font-semibold md:text-[16px] sm:text-2xl">{newname}</h3>
-               <div className="flex mt-2 md:text-[12px]">
+         <div className="lg:m-2 md:m-2 md:w-[50%] lg:py-1 rounded-lg lg:w-[100%] lg:h-[30%]  md:flex flex-col md:justify-between lg:justify-between ">
+            <div className="flex lg:flex-row md:flex-col">
+               <h3 className="lg:font-semibold md:ml-2 md:text-[30px] lg:w-[70%] lg:text-[16px] md:font-bold">{newname}</h3>
+               <div className="lg:mt-2 md:ml-2 lg:text-[10px] md:text-[16px] lg:w-[35%]">
                   <Astricks data = {avgRating}/>
                </div>
             </div>
-            <h3 className="text-xs my-1">{compCuisine}</h3>
+            <h3 className="lg:text-xs md:ml-2 md:text-xl my-1">{compCuisine}</h3>
          </div>
       </div>
    )
@@ -56,7 +59,7 @@ const CardWithLabel = (RestaurantCard) => {
    return (resData) => {
       return (
          <div className="relative"> 
-            <label className="absolute left-5 top-2 py-1 px-2 m-1 text-[10px] rounded-2xl text-black bg-white">Promoted</label>
+            <label className="absolute lg:left-5 md:left-3 md:top-3 lg:top-2 py-1 px-2 m-1 text-[10px] rounded-2xl text-black bg-white">Promoted</label>
             <RestaurantCard {...resData}/>
          </div>
       )
