@@ -43,10 +43,10 @@ export const RestaurantCard = (props) => {
                <div className="lg:mt-2  lg:text-[10px] md:text-[30px] lg:w-[35%]">
                   <Astricks data = {avgRating}/>
                </div>
-            </div>
+            </div>  
             <h3 className="lg:text-xs md:ml-2 md:mb-10 md:text-4xl my-1">{compCuisine}</h3>
          </div>
-      </div>
+      </div>  
    )
 }
 

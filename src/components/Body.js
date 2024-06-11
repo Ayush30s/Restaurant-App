@@ -76,27 +76,27 @@ const Body = () => {
       return (
          <div className="overflow-y-hidden flex flex-col overflow-x-hidden justify-between">
             <BodyFirstSection/>
-            <div className = "flex flex-row justify-evenly items-center">
+            {window.innerWidth/2 < 550 ? <div className = "flex flex-row justify-evenly items-center">
                <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
                <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
-            </div>
+            </div> : null}
             
             <ResSlider resData={listofRestaurants}/>
-            <div className = "flex flex-row justify-evenly items-center">
+            {window.innerWidth/2 < 550 ? <div className = "flex flex-row justify-evenly items-center">
                <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
                <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
-            </div>
+            </div>: null}
             
             {listofRestaurants.length > 0 ? 
-            <>
+            <div className="">
                <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-8 align-middle md:w-[90%] lg:w-[85%] rounded-lg mt-10'>
                   <div className="mt-1 md:ml-3">
-                     <input type="text" className = "px-3 lg:py-1 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none w-[75%]" placeholder="Search Food" onChange={(event) => {
+                     <input type="text" className = "px-3 lg:py-0 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black shadow-2xl focus:outline-none w-[75%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
                      }}/>
       
                      {/* Search */}
-                     <button className="mx-2 mt-2 lg:text-lg lg:p-1 md:text-4xl md:py-4 md:px-4 border shadow-lg border-black m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-5 md:w-[20%] text-white" onClick={() => {
+                     <button className="mx-2 mt-2 lg:text-lg lg:p-0 md:text-4xl md:py-4 md:px-4 border shadow-lg border-black m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-5 lg:w-[22%] md:w-[20%] text-white" onClick={() => {
                         let filterteredRestaurant = listofRestaurants?.filter(
                            (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
                         )
@@ -173,7 +173,7 @@ const Body = () => {
                   </div>
                </div>
                
-               <div id = "body" className= ' flex flex-wrap justify-center md:ml-4 lg:ml-[104px] align-middle lg:w-[85%] md:w-[100%] rounded-lg mt-10'>
+               <div id = "body" className= ' flex flex-wrap justify-center md:ml-4  align-middle lg:w-[100%] md:w-[100%] rounded-lg mt-10'>
                   {fileterdRestaurantList?.length == 0 ? <div className="my-10 text-center font-bold md:text-4xl lg:text-2xl">No Restaurant Found ¯\(°_o)/¯</div>  
                      : 
                      fileterdRestaurantList?.map((restaurant) => (
@@ -188,7 +188,7 @@ const Body = () => {
                         </Link>
                      ))}
                </div>
-            </> : <h1 className="absolute top-[140%] h-[200px] left-[35%] mb-20">FOR KNOW , API DATA IS NOT PRESENT FOR THIS SECTION</h1>}
+            </div> : <h1 className="absolute top-[140%] h-[200px] left-[35%] mb-20">FOR KNOW , API DATA IS NOT PRESENT FOR THIS SECTION</h1>}
          </div>
       ) 
    }
