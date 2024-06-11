@@ -89,9 +89,9 @@ const Body = () => {
             
             {listofRestaurants.length > 0 ? 
             <>
-               <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-16 align-middle w-[85%] rounded-lg mt-10'>
+               <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-8 align-middle md:w-[90%] lg:w-[85%] rounded-lg mt-10'>
                   <div className="mt-1 md:ml-3">
-                     <input type="text" className = "px-3 lg:py-1 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none md:w-[77%]" placeholder="Search Food" onChange={(event) => {
+                     <input type="text" className = "px-3 lg:py-1 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none w-[75%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
                      }}/>
       

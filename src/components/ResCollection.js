@@ -35,10 +35,10 @@ const FoodTypeRestaurant = () => {
    } else {
       return (
          <div className="w-full h-full"> 
-            <div className = "lg:mx-20 md:mx-0 my-4">
-               <div className="mx-3 my-5">
+            <div className = "lg:mx-20 md:mx-4 my-4">
+               <div className="lg:mx-3 md:mx-1 my-5">
                   <h1 className="font-semibold lg:text-4xl md:text-[80px]">{title}</h1>
-                  <h1 className="text-gray-700 md:text-[40px]">{description}</h1>
+                  <h1 className="text-gray-700 lg:text-lg md:text-[40px]">{description}</h1>
                </div>
 
                <div className="flex flex-wrap"> 
