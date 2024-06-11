@@ -89,7 +89,7 @@ const Body = () => {
             
             {listofRestaurants.length > 0 ? 
             <div className="">
-               <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-8 align-middle md:w-[90%] lg:w-[85%] rounded-lg mt-10'>
+               <div className='flex lg:glex-row md:flex-col justify-center lg:ml-[120px] md:ml-8 align-middle md:w-[90%] lg:w-[85%] rounded-lg mt-10'>
                   <div className="mt-1 md:ml-3">
                      <input type="text" className = "px-3 lg:py-0 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black shadow-2xl focus:outline-none w-[75%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
@@ -173,7 +173,7 @@ const Body = () => {
                   </div>
                </div>
                
-               <div id = "body" className= ' flex flex-wrap justify-center md:ml-4  align-middle lg:w-[100%] md:w-[100%] rounded-lg mt-10'>
+               <div id = "body" className= ' flex flex-wrap justify-center items-center md:ml-4  align-middle lg:w-[100%] md:w-[100%] rounded-lg mt-10'>
                   {fileterdRestaurantList?.length == 0 ? <div className="my-10 text-center font-bold md:text-4xl lg:text-2xl">No Restaurant Found ¯\(°_o)/¯</div>  
                      : 
                      fileterdRestaurantList?.map((restaurant) => (
