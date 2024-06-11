@@ -91,12 +91,12 @@ const Body = () => {
             <>
                <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-16 align-middle w-[85%] rounded-lg mt-10'>
                   <div className="mt-1 md:ml-3">
-                     <input type="text" className = "px-3 md:py-4 md:text-4xl rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none md:w-[75%]" placeholder="Search Food" onChange={(event) => {
+                     <input type="text" className = "px-3 lg:py-1 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none md:w-[77%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
                      }}/>
       
                      {/* Search */}
-                     <button className="mx-2 mt-2 md:text-4xl py-4 md:px-4 border shadow-lg border-black px-2 m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-10 md:w-[20%] text-white" onClick={() => {
+                     <button className="mx-2 mt-2 lg:text-lg lg:p-1 md:text-4xl md:py-4 md:px-4 border shadow-lg border-black m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-5 md:w-[20%] text-white" onClick={() => {
                         let filterteredRestaurant = listofRestaurants?.filter(
                            (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
                         )
@@ -104,8 +104,8 @@ const Body = () => {
                      }}>Search</button>
                   </div>
       
-                  <div className = "flex flex-row flex-wrap justify-between">
-                     <button id ="allres" className="border md:p-4 border-black lg:px-2 md:text-4xl m-3 rounded-3xl active:bg-black active:text-white shadow-2xl hover:bg-black hover:text-white"
+                  <div className = "flex flex-row md:flex-wrap justify-between">
+                     <button id ="allres" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
                         onClick={() => {
                            for(let fl of filters) {
                               document.getElementById(fl).classList.remove("bg-black", "text-white");
@@ -116,7 +116,7 @@ const Body = () => {
                         }}
                      >All Restaurant</button>
          
-                     <button id="fast" className="border md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                     <button id="fast" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
                               document.getElementById("fast").classList.remove("bg-black", "text-white");
@@ -134,7 +134,7 @@ const Body = () => {
                         }}
                      >Fast Delivery</button>
          
-                     <button id="avgRating" className="border border-black md:text-4xl md:p-4 m-3 lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                     <button id="avgRating" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
                               document.getElementById("avgRating").classList.remove("bg-black", "text-white");
@@ -152,7 +152,7 @@ const Body = () => {
                         }}
                      >4+ rated</button>
          
-                     <button id="costForTwo" className="border shadow-2xl md:p-4 md:text-4xl border-black m-3 px-2 rounded-3xl hover:shadow-2xl hover:bg-black hover:text-white"
+                     <button id="costForTwo" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
                               document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
