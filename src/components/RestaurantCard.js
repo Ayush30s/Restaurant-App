@@ -10,16 +10,16 @@ export const RestaurantCard = (props) => {
    let {name, cuisines, cloudinaryImageId, avgRating} = resData?.info;
    let {deliveryTime} = resData?.info?.sla;
 
-   const compressString = (string,n) => {
+   const compressString = (string) => {
       if(string.length > 17) {
-         string = string.substring(0,n) + "...";
+         string = string.substring(0,15) + "...";
       }
       return string;
    }
 
    let stringCuisines = cuisines.join(",\n");
-   let cuisinelen = window.innerWidth / 2 < 500 ? 100 : 20;
-   let compCuisine = compressString(stringCuisines,cuisinelen);
+   console.log(window.innerWidth)
+   let compCuisine = window.innerWidth/2 > 550 ? compressString(stringCuisines) : stringCuisines;
 
    let maxTime = Math.ceil(deliveryTime / 5) * 5;
    let minTime = Math.floor(deliveryTime / 5) * 5;
@@ -27,26 +27,24 @@ export const RestaurantCard = (props) => {
       maxTime += 5;
    }
    
-   let namelen = window.innerWidth/2 < 500 ? 17 : 10;
-   console.log(window.innerWidth);
-   let newname = compressString(name,namelen);
+   let newname = window.innerWidth/2 > 600 ? compressString(name) : name;
 
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className='md:bg-green-100 lg:bg-purple-300 md:w-[700px] md:h-[250px] md:p-2 flex md:flex-row lg:flex-col lg:justify-center z-10 lg:w-[260px] lg:h-[260px] shadow-xl rounded-lg text-black cursor-pointer lg:m-[10px] hover:bg-gray-100 lg:p-[5px] snap-end'>
-         <img className='rounded-xl md:m-2 md:w-[50%] md:h-[100%] lg:w-[100%] lg:h-[70%] ' 
+      <div className=' md:mb-[30px] md:w-[90vw] md:mr-10 md:mt-5 md:h-[500px] md:p-2 flex md:flex-row lg:flex-col lg:justify-center z-10 lg:w-[260px] lg:h-[260px] shadow-xl rounded-lg text-black cursor-pointer lg:m-[10px] hover:bg-gray-100 lg:snap-end md:snap-start'>
+         <img className='lg:rounded-xl md:m-2 md:p-1 md:rounded-3xl md:w-[50%] md:h-[90%] lg:w-[100%] lg:h-[70%] ' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'
          />
-         <div className="lg:m-2 md:m-2 md:w-[50%] lg:py-1 rounded-lg lg:w-[100%] lg:h-[30%]  md:flex flex-col md:justify-between lg:justify-between ">
+         <div className="lg:m-2 md:m-1 md:w-[50%] lg:py-1 rounded-lg lg:w-[100%] lg:h-[30%] md:flex flex-col md:justify-between lg:justify-between ">
             <div className="flex lg:flex-row md:flex-col">
-               <h3 className="lg:font-semibold md:ml-2 md:text-[30px] lg:w-[70%] lg:text-[16px] md:font-bold">{newname}</h3>
-               <div className="lg:mt-2 md:ml-2 lg:text-[10px] md:text-[16px] lg:w-[35%]">
+               <h3 className="lg:font-semibold md:ml-2 md:text-[50px] lg:w-[70%] lg:text-[16px] md:font-bold">{newname}</h3>
+               <div className="lg:mt-2  lg:text-[10px] md:text-[30px] lg:w-[35%]">
                   <Astricks data = {avgRating}/>
                </div>
             </div>
-            <h3 className="lg:text-xs md:ml-2 md:text-xl my-1">{compCuisine}</h3>
+            <h3 className="lg:text-xs md:ml-2 md:mb-10 md:text-4xl my-1">{compCuisine}</h3>
          </div>
       </div>
    )
@@ -59,7 +57,7 @@ const CardWithLabel = (RestaurantCard) => {
    return (resData) => {
       return (
          <div className="relative"> 
-            <label className="absolute lg:left-5 md:left-3 md:top-3 lg:top-2 py-1 px-2 m-1 text-[10px] rounded-2xl text-black bg-white">Promoted</label>
+            <label className="absolute lg:left-7 md:left-8 md:top-8 lg:top-2 py-1 px-2 m-1 lg:text-[10px] rounded-2xl text-black md:text-[20px] bg-white">Promoted</label>
             <RestaurantCard {...resData}/>
          </div>
       )

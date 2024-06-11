@@ -33,8 +33,8 @@ const ResSlider = ({ resData }) => {
       return <BodyScrollSectionShimmer/>
    } else {
       return ( 
-         <div id="ResSlider" className=" mt-8 mx-24 flex flex-col h-[400px] pt-5">
-            <h1 className="text-2xl mb-4 font-semibold">Famous Restaurants in Your City</h1>
+         <div id="ResSlider" className="mt-8 lg:mx-24 md:mx-6 flex flex-col lg:h-[400px] md:h-[700px] lg:pt-5 md:p-4">
+            <h1 className="lg:text-2xl md:text-[50px] ml-[5px] mb-4 font-semibold">Famous Restaurants in Your City</h1>
             
             <div className="flex overflow-x-scroll touch-auto custom-scrollbar p-2 rounded-2xl snap-x">
                {topResArray?.map((restaurant) => (

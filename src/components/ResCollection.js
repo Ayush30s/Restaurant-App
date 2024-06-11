@@ -34,11 +34,11 @@ const FoodTypeRestaurant = () => {
       return <BodyShimmer/>
    } else {
       return (
-         <div className="w-full h-full "> 
+         <div className="w-full h-full"> 
             <div className = "mx-20 my-4">
                <div className="mx-3 my-5">
-                  <h1 className="font-semibold text-4xl">{title}</h1>
-                  <i className="text-gray-700">{description}</i>
+                  <h1 className="font-semibold lg:text-4xl md:text-[80px]">{title}</h1>
+                  <h1 className="text-gray-700 md:text-[40px]">{description}</h1>
                </div>
 
                <div className="flex flex-wrap"> 

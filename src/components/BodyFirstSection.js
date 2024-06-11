@@ -28,7 +28,7 @@ const BodyFirstSection = () => {
       return <BodyFirstSectionShimmer/> 
    } else { 
       return (
-         <div className=" mx-24 my-5 h-full flex flex-row touch-auto snap-x overflow-x-scroll custom-scrollbar">
+         <div className="md:mx-8 md:my-10 lg:mx-24 lg:my-5 h-full flex flex-row touch-auto snap-x overflow-x-scroll custom-scrollbar">
             {myMindFood?.map((food,index) => (
                <Link key={index} to={"/food/collection/id=/" + food.action.link.match(/\d+/g).map(Number)[0] + "/restaurants"}><MiniCards foodData = {food}/></Link>
             ))}

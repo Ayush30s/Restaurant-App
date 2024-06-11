@@ -66,24 +66,37 @@ const Body = () => {
          <h1>Check your internet conection!<br/> You are Offline!</h1>
       );
    }
+
+   const slideleftstring = "<----";
+   const slideRightstring = "---->";
    
    if(!isloading) {
       return <BodyShimmer/>
    } else {
       return (
-         <div className="overflow-y-hidden flex flex-col overflow-x-hidden justify-center">
+         <div className="overflow-y-hidden flex flex-col overflow-x-hidden justify-between">
             <BodyFirstSection/>
+            <div className = "flex flex-row justify-evenly items-center">
+               <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
+               <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
+            </div>
             
             <ResSlider resData={listofRestaurants}/>
-            {listofRestaurants.length > 0 ? <>
-               <div className='flex justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
-                  <div className="mt-1">
-                     <input type="text" className = "px-3 rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none " placeholder="Search Food" onChange={(event) => {
+            <div className = "flex flex-row justify-evenly items-center">
+               <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
+               <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
+            </div>
+            
+            {listofRestaurants.length > 0 ? 
+            <>
+               <div className='flex lg:glex-row md:flex-col  justify-center lg:ml-[102px] md:ml-16 align-middle w-[85%] rounded-lg mt-10'>
+                  <div className="mt-1 md:ml-3">
+                     <input type="text" className = "px-3 md:py-4 md:text-4xl rounded-3xl border bg-transparent border-black w-80 shadow-2xl focus:outline-none md:w-[75%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
                      }}/>
       
                      {/* Search */}
-                     <button className="mx-2 mt-2 border shadow-lg border-black px-2 m-3 bg-black rounded-3xl cursor-pointer text-white" onClick={() => {
+                     <button className="mx-2 mt-2 md:text-4xl py-4 md:px-4 border shadow-lg border-black px-2 m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-10 md:w-[20%] text-white" onClick={() => {
                         let filterteredRestaurant = listofRestaurants?.filter(
                            (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
                         )
@@ -91,75 +104,77 @@ const Body = () => {
                      }}>Search</button>
                   </div>
       
-                  <button id ="allres" className="border  border-black px-2 m-3 rounded-3xl active:bg-black active:text-white shadow-2xl"
-                     onClick={() => {
-                        for(let fl of filters) {
-                           document.getElementById(fl).classList.remove("bg-black", "text-white");
-                           document.getElementById(fl).classList.add("bg-white", "text-black");
-                        }
-                        setfileterdRestaurantList(listofRestaurants);
-                        setfilters([]);
-                     }}
-                  >All Restaurant</button>
-      
-                  <button id="fast" className="border border-black m-3 px-2 rounded-3xl shadow-2xl"
-                     onClick={() => {
-                        if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
-                           document.getElementById("fast").classList.remove("bg-black", "text-white");
-                           document.getElementById("fast").classList.add("bg-white", "text-black");
-                        } else {
-                           document.getElementById("fast").classList.remove("bg-white" , "text-black");
-                           document.getElementById("fast").classList.add("bg-black" , "text-white");
-                        }
-      
-                        if (filters.includes("fast")) {
-                           setfilters(filters.filter(filter => filter !== "fast"));
-                        } else {
-                           setfilters([...filters, "fast"]);
-                        }
-                     }}
-                  >Fast Delivery</button>
-      
-                  <button id="avgRating" className="border border-black m-3 px-2 rounded-3xl shadow-2xl"
-                     onClick={() => {
-                        if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
-                           document.getElementById("avgRating").classList.remove("bg-black", "text-white");
-                           document.getElementById("avgRating").classList.add("bg-white", "text-black");
-                        } else {
-                           document.getElementById("avgRating").classList.remove("bg-white" , "text-black");
-                           document.getElementById("avgRating").classList.add("bg-black" , "text-white");
-                        }
-      
-                        if (filters.includes("avgRating")) {
-                           setfilters(filters.filter(filter => filter !== "avgRating"));
-                        } else {
-                           setfilters([...filters, "avgRating"]);
-                        }
-                     }}
-                  >4+ rated</button>
-      
-                  <button id="costForTwo" className="border shadow-2xl border-black m-3 px-2 rounded-3xl hover:shadow-2xl"
-                     onClick={() => {
-                        if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
-                           document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
-                           document.getElementById("costForTwo").classList.add("bg-white", "text-black");
-                        } else {
-                           document.getElementById("costForTwo").classList.remove("bg-white", "text-black");
-                           document.getElementById("costForTwo").classList.add("bg-black", "text-white");
-                        }
-      
-      
-                        if (filters.includes("costForTwo")) {
-                           setfilters(filters.filter(filter => filter !== "costForTwo"));
-                        } else {
-                           setfilters([...filters, "costForTwo"]);
-                        }
-                     }}
-                  >Less than 300</button>
+                  <div className = "flex flex-row flex-wrap justify-between">
+                     <button id ="allres" className="border md:p-4 border-black lg:px-2 md:text-4xl m-3 rounded-3xl active:bg-black active:text-white shadow-2xl hover:bg-black hover:text-white"
+                        onClick={() => {
+                           for(let fl of filters) {
+                              document.getElementById(fl).classList.remove("bg-black", "text-white");
+                              document.getElementById(fl).classList.add("bg-white", "text-black");
+                           }
+                           setfileterdRestaurantList(listofRestaurants);
+                           setfilters([]);
+                        }}
+                     >All Restaurant</button>
+         
+                     <button id="fast" className="border md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                        onClick={() => {
+                           if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
+                              document.getElementById("fast").classList.remove("bg-black", "text-white");
+                              document.getElementById("fast").classList.add("bg-white", "text-black");
+                           } else {
+                              document.getElementById("fast").classList.remove("bg-white" , "text-black");
+                              document.getElementById("fast").classList.add("bg-black" , "text-white");
+                           }
+         
+                           if (filters.includes("fast")) {
+                              setfilters(filters.filter(filter => filter !== "fast"));
+                           } else {
+                              setfilters([...filters, "fast"]);
+                           }
+                        }}
+                     >Fast Delivery</button>
+         
+                     <button id="avgRating" className="border border-black md:text-4xl md:p-4 m-3 lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                        onClick={() => {
+                           if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
+                              document.getElementById("avgRating").classList.remove("bg-black", "text-white");
+                              document.getElementById("avgRating").classList.add("bg-white", "text-black");
+                           } else {
+                              document.getElementById("avgRating").classList.remove("bg-white" , "text-black");
+                              document.getElementById("avgRating").classList.add("bg-black" , "text-white");
+                           }
+         
+                           if (filters.includes("avgRating")) {
+                              setfilters(filters.filter(filter => filter !== "avgRating"));
+                           } else {
+                              setfilters([...filters, "avgRating"]);
+                           }
+                        }}
+                     >4+ rated</button>
+         
+                     <button id="costForTwo" className="border shadow-2xl md:p-4 md:text-4xl border-black m-3 px-2 rounded-3xl hover:shadow-2xl hover:bg-black hover:text-white"
+                        onClick={() => {
+                           if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
+                              document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
+                              document.getElementById("costForTwo").classList.add("bg-white", "text-black");
+                           } else {
+                              document.getElementById("costForTwo").classList.remove("bg-white", "text-black");
+                              document.getElementById("costForTwo").classList.add("bg-black", "text-white");
+                           }
+         
+         
+                           if (filters.includes("costForTwo")) {
+                              setfilters(filters.filter(filter => filter !== "costForTwo"));
+                           } else {
+                              setfilters([...filters, "costForTwo"]);
+                           }
+                        }}
+                     >Less than 300</button>
+                  </div>
                </div>
                
-               <div id = "body" className= ' flex flex-wrap justify-center ml-[102px] align-middle w-[85%] rounded-lg mt-10'>
-                  {fileterdRestaurantList?.length == 0 ? <h1 className="my-10 mx-72 font-bold text-2xl">No Restaurant Found ¯\(°_o)/¯</h1>  
+               <div id = "body" className= ' flex flex-wrap justify-center md:ml-4 lg:ml-[104px] align-middle lg:w-[85%] md:w-[100%] rounded-lg mt-10'>
+                  {fileterdRestaurantList?.length == 0 ? <div className="my-10 text-center font-bold md:text-4xl lg:text-2xl">No Restaurant Found ¯\(°_o)/¯</div>  
                      : 
                      fileterdRestaurantList?.map((restaurant) => (
                         <Link key = {restaurant?.info?.id} to = {"/restaurants/" + restaurant?.info?.id}>
