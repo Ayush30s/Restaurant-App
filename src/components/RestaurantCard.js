@@ -18,7 +18,6 @@ export const RestaurantCard = (props) => {
    }
 
    let stringCuisines = cuisines.join(",\n");
-   console.log(window.innerWidth)
    let compCuisine = window.innerWidth/2 > 550 ? compressString(stringCuisines) : stringCuisines;
 
    let maxTime = Math.ceil(deliveryTime / 5) * 5;
@@ -32,7 +31,7 @@ export const RestaurantCard = (props) => {
    //if you loop on res data to create diffrent card for different restaurant always give key to each restrauant component
    //never use index as key for the component
    return (
-      <div className=' md:mb-[30px] md:w-[90vw] md:mr-10 md:mt-5 md:h-[500px] md:p-2 flex md:flex-row lg:flex-col lg:justify-center z-10 lg:w-[260px] lg:h-[260px] shadow-xl rounded-lg text-black cursor-pointer lg:m-[10px] hover:bg-gray-100 lg:snap-end md:snap-start'>
+      <div className='md:mb-[30px] md:w-[90vw] md:mr-10 md:mt-5 md:h-[500px] md:p-2 flex md:flex-row lg:flex-col lg:justify-center lg:items-center z-10 lg:w-[260px] lg:h-[260px] shadow-xl rounded-lg text-black cursor-pointer lg:m-[10px] hover:bg-gray-100 lg:snap-end md:snap-start'>
          <img className='lg:rounded-xl md:m-2 md:p-1 md:rounded-3xl md:w-[50%] md:h-[90%] lg:w-[100%] lg:h-[70%] ' 
             src = {CDN_URL + cloudinaryImageId}
             alt='cardImage'

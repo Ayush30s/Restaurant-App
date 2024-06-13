@@ -66,9 +66,6 @@ const Body = () => {
          <h1>Check your internet conection!<br/> You are Offline!</h1>
       );
    }
-
-   const slideleftstring = "<----";
-   const slideRightstring = "---->";
    
    if(!isloading) {
       return <BodyShimmer/>
@@ -76,27 +73,27 @@ const Body = () => {
       return (
          <div className="overflow-y-hidden flex flex-col overflow-x-hidden justify-between">
             <BodyFirstSection/>
-            {window.innerWidth/2 < 550 ? <div className = "flex flex-row justify-evenly items-center">
-               <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
-               <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
+            
+            {window.innerWidth/2 < 550 ? <div className = " text-lg text-gray-500 text-center">
+               swipe left and right
             </div> : null}
             
             <ResSlider resData={listofRestaurants}/>
-            {window.innerWidth/2 < 550 ? <div className = "flex flex-row justify-evenly items-center">
-               <h1 className = "text-3xl font-bold">{slideleftstring}</h1>
-               <h1 className = "text-3xl font-bold">{slideRightstring}</h1>
-            </div>: null}
             
-            {listofRestaurants.length > 0 ? 
-            <div className="">
-               <div className='flex lg:glex-row md:flex-col justify-center lg:ml-[120px] md:ml-8 align-middle md:w-[90%] lg:w-[85%] rounded-lg mt-10'>
-                  <div className="mt-1 md:ml-3">
-                     <input type="text" className = "px-3 lg:py-0 md:py-4 md:text-4xl lg:text-lg rounded-3xl border bg-transparent border-black shadow-2xl focus:outline-none w-[75%]" placeholder="Search Food" onChange={(event) => {
+            {window.innerWidth/2 < 550 ? <div className = " text-lg text-gray-500 text-center">
+               swipe left and right
+            </div> : null}
+            
+            {listofRestaurants?.length > 0 ? 
+            <div className="lg:flex lg:flex-col justify-between items-center lg:mx-24">
+               <div className='flex lg:flex-row md:flex-col justify-center md:ml-8 align-middle md:w-[100%] rounded-lg mt-10 lg:ml-40'>
+                  <div className="mt-2 md:ml-3 lg:w-[40%]">
+                     <input type="text" className = " lg:p-1 md:py-4 md:text-4xl lg:text-sm rounded-lg border bg-transparent border-black shadow-2xl focus:outline-none w-[70%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
-                     }}/>
+                     }}/>  
       
                      {/* Search */}
-                     <button className="mx-2 mt-2 lg:text-lg lg:p-0 md:text-4xl md:py-4 md:px-4 border shadow-lg border-black m-3 bg-black rounded-3xl cursor-pointer md:ml-6 lg:ml-5 lg:w-[22%] md:w-[20%] text-white" onClick={() => {
+                     <button  className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white" onClick={() => {
                         let filterteredRestaurant = listofRestaurants?.filter(
                            (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
                         )
@@ -104,8 +101,8 @@ const Body = () => {
                      }}>Search</button>
                   </div>
       
-                  <div className = "flex flex-row md:flex-wrap justify-between">
-                     <button id ="allres" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                  <div className = "md:m-2 lg:w-[60%]">
+                     <button id ="allres" className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white"
                         onClick={() => {
                            for(let fl of filters) {
                               document.getElementById(fl).classList.remove("bg-black", "text-white");
@@ -116,7 +113,7 @@ const Body = () => {
                         }}
                      >All Restaurant</button>
          
-                     <button id="fast" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                     <button id="fast"  className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("fast").classList.contains("bg-black", "text-white")) {
                               document.getElementById("fast").classList.remove("bg-black", "text-white");
@@ -134,7 +131,7 @@ const Body = () => {
                         }}
                      >Fast Delivery</button>
          
-                     <button id="avgRating" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                     <button id="avgRating"  className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("avgRating").classList.contains("bg-black", "text-white")) {
                               document.getElementById("avgRating").classList.remove("bg-black", "text-white");
@@ -152,7 +149,7 @@ const Body = () => {
                         }}
                      >4+ rated</button>
          
-                     <button id="costForTwo" className="border lg:text-sm lg:p-1 md:p-4 border-black m-3 md:text-4xl lg:px-2 rounded-3xl shadow-2xl hover:bg-black hover:text-white"
+                     <button id="costForTwo"  className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white"
                         onClick={() => {
                            if(document.getElementById("costForTwo").classList.contains("bg-black", "text-white")) {
                               document.getElementById("costForTwo").classList.remove("bg-black", "text-white");
@@ -173,7 +170,7 @@ const Body = () => {
                   </div>
                </div>
                
-               <div id = "body" className= ' flex flex-wrap justify-center items-center md:ml-4  align-middle lg:w-[100%] md:w-[100%] rounded-lg mt-10'>
+               <div id = "body" className= ' flex flex-wrap justify-center items-center md:ml-4 align-middle  md:w-[100%] rounded-lg mt-10'>
                   {fileterdRestaurantList?.length == 0 ? <div className="my-10 text-center font-bold md:text-4xl lg:text-2xl">No Restaurant Found ¯\(°_o)/¯</div>  
                      : 
                      fileterdRestaurantList?.map((restaurant) => (
