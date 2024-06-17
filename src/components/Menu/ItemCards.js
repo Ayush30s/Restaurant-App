@@ -15,7 +15,6 @@ const ItemCards = (data) => {
    
 
    return (
-      
       <div className= "m-2">
          {array.map((ele) => {
             //agr foodtype true hi mtlb veg aur dish type bhi true hi mtlb veg then show veg dishes only

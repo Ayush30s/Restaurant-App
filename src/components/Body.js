@@ -66,7 +66,7 @@ const Body = () => {
          <h1>Check your internet conection!<br/> You are Offline!</h1>
       );
    }
-   
+    
    if(!isloading) {
       return <BodyShimmer/>
    } else {
@@ -88,16 +88,26 @@ const Body = () => {
             <div className="lg:flex lg:flex-col justify-between items-center lg:mx-24">
                <div className='flex lg:flex-row md:flex-col justify-center md:ml-8 align-middle md:w-[100%] rounded-lg mt-10 lg:ml-40'>
                   <div className="mt-2 md:ml-3 lg:w-[40%]">
-                     <input type="text" className = " lg:p-1 md:py-4 md:text-4xl lg:text-sm rounded-lg border bg-transparent border-black shadow-2xl focus:outline-none w-[70%]" placeholder="Search Food" onChange={(event) => {
+                     <input type="text" className = " lg:p-1 md:py-4 md:px-2 md:text-4xl lg:text-sm rounded-lg border bg-transparent border-black shadow-2xl focus:outline-none w-[70%]" placeholder="Search Food" onChange={(event) => {
                         setSearchText(event.target.value);
                      }}/>  
       
                      {/* Search */}
                      <button  className="bg-white m-1 text-black rounded-3xl ml-1 md:text-4xl lg:text-sm lg:py-1 lg:px-2 border border-black md:p-4 hover:bg-black hover:text-white" onClick={() => {
-                        let filterteredRestaurant = listofRestaurants?.filter(
+                        let filterteredRestaurant = undefined;
+                        filterteredRestaurant = listofRestaurants?.filter(
                            (restaurant)=> restaurant.info.name.toLocaleLowerCase()?.includes(searchText.toLocaleLowerCase())
                         )
                         setfileterdRestaurantList(filterteredRestaurant);
+
+                        let filterteredRestaurant2 = undefined;
+                        filterteredRestaurant2 = listofRestaurants?.filter(
+                           (restaurant)=> {
+                              return restaurant.info.cuisines.indexOf(searchText) !== -1 ? restaurant.info.cuisines[restaurant.info.cuisines.indexOf(searchText)] : undefined;
+                           }
+                        )
+                        filterteredRestaurant.length !== 0 ? setfileterdRestaurantList(filterteredRestaurant)
+                        : setfileterdRestaurantList(filterteredRestaurant2);
                      }}>Search</button>
                   </div>
       

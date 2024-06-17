@@ -2,7 +2,6 @@ import React from "react";
 import CategoryItem from "./CategoryItem";
 import { useState } from "react";
 import ItemCards from "./ItemCards";
-import BlurContext from "../../utils/BlurContext";
 
 const Categories = (category) => {
    const data = category.data.card.card;
@@ -14,17 +13,17 @@ const Categories = (category) => {
    };
 
    return (
-         <div className= "p-5 bg-white my-4 shadow-md">
+         <div className= "p-5 lg:bg-white my-4 shadow-md">
             <div className="flex justify-between" onClick={setVsisble}>
-               <div className="font-bold text-sm bg-gray-200 border border-white shadow-xl px-2 py-1 rounded-3xl">
+               <div className="lg:font-bold md:font-medium lg:text-sm md:text-3xl bg-gray-200 border border-white shadow-xl lg:px-2 md:px-4 py-2 rounded-3xl">
                   {data.title}
                </div>
                {showItems ? (
-                  <button className="px-2 rounded-xl border border-white shadow-lg text-xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                  <button className="px-2 rounded-xl border border-white shadow-lg lg:text-xl md:text-4xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
                      ▴
                   </button>
                ) : (
-                  <button className="px-2 rounded-xl border border-white shadow-lg text-xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
+                  <button className="px-2 rounded-xl border border-white shadow-lg lg:text-xl md:text-4xl bg-slate-300 hover:bg-slate-400 active:bg-slate-950 active:text-white">
                      ▾
                   </button>
                )}
