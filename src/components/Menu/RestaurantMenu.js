@@ -65,13 +65,13 @@ const RestaurantMenu = () => {
                <div id="resDetail" className="lg:w-[80%] md:w-[90%] py-4 lg:ml-32 md:ml-12">
                   <AboutRestaurant data={aboutrestaurant} />
       
-                  <Offer data={offerdata} />
+                  {/* <Offer data={offerdata} /> */}
       
                   {/* veg or not - Button */
                      aboutrestaurant?.veg ? 
                         <span className="text-green-600 lg:text-sm md:text-2xl border-green-600 border lg:p-1 md:p-2 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
                      :
-                     <button id="vegbtn" className="static top-10 lg:text-sm md:text-2xl lg:p-1 md:p-2 w-[8%] rounded-2xl m-2 text-white bg-green-700 border shadow-lg " 
+                     <button id="vegbtn" className="static top-10 lg:text-sm md:text-2xl lg:p-1 md:p-2 w-[15%] rounded-full m-2 text-white bg-green-700 border shadow-2xl " 
                         onClick={() => {
                            changeCSS("vegbtn" ,foodtype);
                            setfoodtype(!foodtype);
@@ -105,7 +105,7 @@ const RestaurantMenu = () => {
                </div>
 
                {
-                  dishclicked && <div className="newdiv absolute top-0 w-[100%] h-[15000px] z-20 backdrop-blur-md"></div>
+                  dishclicked && <div className="newdiv absolute top-0 w-[100%] h-[130000px] z-20 backdrop-blur-md"></div>
                }
             </BlurContext.Provider>
          </FoodContext.Provider>

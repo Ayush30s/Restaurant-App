@@ -40,10 +40,6 @@ const Variant = (props) => {
       }
    }, [variantSelected, addonsSelected, usedata, dishname, props.data.details, restaurantid]);
 
-   props.data.variant.map((ele) => {
-      console.log(ele)
-   })
-
    const toggeldata = (rupee) => {
       setdata(rupee);
    }
@@ -71,7 +67,7 @@ const Variant = (props) => {
 
    return (
       <AddonsContext.Provider value={{addonsSelected,setAddonsSelected}}>
-         <div className="flex flex-col z-50 rounded-2xl pointer-events-auto fixed max-h-[60%] top-[20%] left-[25%] w-[50%] bg-white border border-gray-300 bg-white-300">
+         <div className="flex flex-col z-50 rounded-2xl pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[25%] lg:w-[50%] md:w-[85%] md:top-0 bg-white border border-gray-300 bg-white-300">
             <div className="flex justify-between mx-7 my-2 border-b-2 py-3 ">
                {showAddons ? 
                   <button className="text-lg active:text-sm w-5" onClick={() => {
