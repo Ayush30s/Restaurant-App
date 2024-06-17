@@ -78,7 +78,7 @@ const Dishes = (data) => {
 
             <div className="lg:w-[15%] md:w-[90%] m-1">
                {(Object.keys(itemDetails.variantsV2).length > 0) ? <h1 className="relative lg:top-[8px] lg:left-8 md:top-[100px] md:left-[5px] lg:text-[5px] md:text-xl">Customizable+</h1> : null}
-               {itemDetails.imageId ? <img className="border mt-1 md:h-[100%] md:w-[100%] border-gray-300 shadow-lg rounded-xl" src = {CDN_URL + itemDetails.imageId}/> : <img className="w-[50%] ml-8 my-8 h-[40%] rounded-xl md:ml-32" src = {"https://static.thenounproject.com/png/340719-200.png"}/>}
+               {itemDetails.imageId ? <img className="border mt-1 md:h-[100%] md:w-[100%] border-gray-300 shadow-lg rounded-xl" src = {CDN_URL + itemDetails.imageId}/> : <img className="w-[50%] ml-8 my-8 h-[40%] rounded-xl md:ml-32 lg:ml-8" src = {"https://static.thenounproject.com/png/340719-200.png"}/>}
                <div className="w-[100%] lg:h-[10%] md:py-1 mt-[10px] bg-white border border-black lg:text-lg text-gray-700 flex flex-row shadow-2xl rounded-xl">
                   <button className="w-[30%] hover:bg-black hover:text-white rounded-xl m-1 active:bg-white active:text-black lg:text-lg lg:font-medium md:text-2xl md:font-semibold" onClick={() => {
                      if(count > 1) { 
