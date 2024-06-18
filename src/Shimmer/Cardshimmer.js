@@ -9,7 +9,7 @@ const CardShimmer = () => {
             <div className="m-1 rounded-full lg:w-[30px] md:w-[600px] bg-gray-100 md:h-[30px] lg:h-[20px]"></div>
             <div className="m-1 rounded-2xl w-[180px] bg-gray-100 h-[20px]"></div>
          </div>
-         <div className="m-1 rounded-2xl w-[220px] bg-slate-200 h-[10px]"></div>
+         <div className="m-1 rounded-2xl w-[220px] bg-slate-200 h-[20px]"></div>
       </div>
    );
 }

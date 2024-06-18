@@ -67,19 +67,19 @@ const Variant = (props) => {
 
    return (
       <AddonsContext.Provider value={{addonsSelected,setAddonsSelected}}>
-         <div className="flex flex-col z-50 rounded-2xl pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[25%] lg:w-[50%] md:w-[85%] md:top-0 bg-white border border-gray-300 bg-white-300">
+         <div className="flex flex-col z-50 rounded-2xl pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[25%] lg:w-[50%] md:w-[95%] md:top-96 bg-white border border-gray-300 bg-white-300">
             <div className="flex justify-between mx-7 my-2 border-b-2 py-3 ">
                {showAddons ? 
-                  <button className="text-lg active:text-sm w-5" onClick={() => {
+                  <button className="lg:text-lg md:text-[50px] active:text-sm w-5" onClick={() => {
                      handleSizeVariant(true);
                      handleShowAddon(false);
                      setBackButton(true);
                      setBackButton(false);
-                  }}> ⬅️ </button> 
+                  }}> ⬅️ </button>  
                   : null
                }
-               <h1 className=" from-neutral-900 text-lg ">Customize "{dishname}"</h1>
-               <button className="font-semibold ml-4 text-white bg-red-400 rounded-full px-2 hover:bg-red-500 hover:font-bold" onClick={() => {
+               <h1 className=" from-neutral-900 lg:text-xl md:text-4xl ">Customize "{dishname}"</h1>
+               <button className="font-semibold ml-4 md:text-[30px] md:px-4 lg:text-xl  text-white bg-red-400 rounded-full px-2 hover:bg-red-500 hover:font-bold" onClick={() => {
                   blurData.setdishclicked(false); 
                   props.chnagestate(false);
                   handleClickBtn();
@@ -87,7 +87,7 @@ const Variant = (props) => {
             </div>
             
             <div className="mx-7 mt-1">
-               <h1 className="from-neutral-900 text-lg mr-4">* {props.data.variant[0].name} <h1 className="text-gray-600 text-pretty inline my-2 text-sm font-thick ">(required)</h1></h1>
+               <h1 className="from-neutral-900 lg:text-lg md:text-4xl mr-4">* {props.data.variant[0].name} </h1>
             </div>
 
             {showSizeVariant && (
@@ -95,10 +95,10 @@ const Variant = (props) => {
                   {props.data.variant.map((ele1) => (
                      (
                         ele1.variations.map((ele) => (
-                           <div key={ele.id} className="flex flex-row justify-between variants cursor-pointer rounded-xl p-2 bg-gray-50 text-lg list-none m-2 font-semibold text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
-                              {ele.isVeg ? <span className="px-1 rounded-xl bg-green-500 text-xs text-white">veg</span> : <span className="px-1 rounded-xl bg-red-500 text-xs text-white">n-veg</span>}
-                              <span className="mx-2 text-sm">{ele.name}</span>
-                              {ele.price && <span className="mx-2 text-sm">₹{ele.price ? ele.price : 0}</span>}
+                           <div key={ele.id} className="flex flex-row bg-slate-50 justify-between variants cursor-pointer rounded-xl p-2  text-lg list-none m-2 lg:font-semibold md:font-medium text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
+                              {ele.isVeg ? <span className="px-1 rounded-xl bg-green-500 text-xl text-white">veg</span> : <span className="px-1 rounded-xl bg-red-500 text-xl text-white">n-veg</span>}
+                              <span className="mx-2 lg:text-xl md:text-3xl">{ele.name}</span>
+                              {ele.price && <span className="mx-2 lg:text-xl md:text-3xl">₹{ele.price ? ele.price : 0}</span>}
                            </div>
                         ))
                      )
@@ -107,10 +107,11 @@ const Variant = (props) => {
             )}
 
             {showAddons && <Addons data={{ addons, variantSelected, dishname}}/>}
-            <div className="ml-7 rounded-xl mr-5 my-2 flex justify-between text-sm text-white bg-green-500 font-bold p-2">
-               {newDetails.totalPrice > 0 && <h1 className="py-1 px-2 rounded-xl text-white bg-green-600">Total Amount : ₹{backButton == false ? (newDetails.totalPrice || 0) : 0}</h1>}               <h1 className="py-1 px-2 rounded-xl text-white bg-green-600">{newDetails.variantSelected?.name == undefined ? "Select any variant" : newDetails.variantSelected?.name}</h1>
+            <div className="ml-7 rounded-xl mr-5 my-2 flex justify-between text-white bg-green-500 font-bold p-2">
+               {newDetails.totalPrice > 0 && <h1 className="py-1 px-2 rounded-xl md:text-3xl lg:text-lg text-white bg-green-600">Total Amount : ₹{backButton == false ? (newDetails.totalPrice || 0) : 0}</h1>}               
+               <h1 className="py-1 px-2 rounded-xl text-white lg:text-lg md:text-3xl bg-green-600">{newDetails.variantSelected?.name == undefined ? "Select any variant" : newDetails.variantSelected?.name}</h1>
                {addons?.length === 0 || showAddons == true ? 
-                  <button className="py-1 px-2 rounded-xl hover:bg-green-600" onClick={() => {
+                  <button className="py-1 px-2 rounded-xl md:text-3xl lg:text-lg hover:bg-green-600" onClick={() => {
                      blurData.setdishclicked(false);
                      if(variantSelected !== null) {
                         handleAddItem();
@@ -118,7 +119,7 @@ const Variant = (props) => {
                      props.chnagestate(false);
                   }}>Add Item</button> 
                   :
-                  <button className="py-1 px-2 rounded-xl hover:bg-green-600" onClick={() => {
+                  <button className="py-1 px-2 md:text-3xl lg:text-lg rounded-xl hover:bg-green-600" onClick={() => {
                      if(variantSelected !== null) {
                         handleSizeVariant(false);
                         handleShowAddon(true);

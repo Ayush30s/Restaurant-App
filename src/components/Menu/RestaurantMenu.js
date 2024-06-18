@@ -62,7 +62,7 @@ const RestaurantMenu = () => {
          <FoodContext.Provider value={{vegornot : foodtype , restaurantid: id}}>
             <BlurContext.Provider value={{ dishclicked, setdishclicked }}>
 
-               <div id="resDetail" className="lg:w-[80%] md:w-[90%] py-4 lg:ml-32 md:ml-12">
+               <div id="resDetail" className="lg:w-[80%] md:w-[100%] py-4 lg:ml-32 md:ml-0">
                   <AboutRestaurant data={aboutrestaurant} />
       
                   {/* <Offer data={offerdata} /> */}
