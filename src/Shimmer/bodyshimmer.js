@@ -8,7 +8,7 @@ const BodyShimmer = () => {
    }
 
    return (
-      <div className="text-black ml-[5%] flex flex-wrap p-5 w-[85%] h-full">
+      <div className="text-black md:ml-[5%] lg:ml-[10%] flex flex-wrap p-5 w-[85%] h-full">
          {shimmerCards}
       </div>
    );

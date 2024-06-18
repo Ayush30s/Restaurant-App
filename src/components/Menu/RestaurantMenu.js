@@ -69,7 +69,7 @@ const RestaurantMenu = () => {
       
                   {/* veg or not - Button */
                      aboutrestaurant?.veg ? 
-                        <span className="text-green-600 lg:text-sm md:text-2xl border-green-600 border lg:p-1 md:p-2 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
+                        <span className="text-green-600 lg:text-sm mx-5 md:text-2xl border-green-600 border lg:p-1 md:p-2 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
                      :
                      <button id="vegbtn" className="static top-10 lg:text-sm md:text-2xl lg:p-1 md:p-2 w-[15%] rounded-full m-2 text-white bg-green-700 border shadow-2xl " 
                         onClick={() => {

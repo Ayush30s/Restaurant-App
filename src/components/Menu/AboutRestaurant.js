@@ -18,7 +18,7 @@ const AboutRestaurant = (resdata) => {
    
    return (
       <div>
-         <div className="flex justify-between  py-2 my-10">
+         <div className="flex justify-between mx-5 py-2 my-10">
             <div>
                <h1 className="font-bold py-2 lg:text-lg md:text-4xl">{resname}</h1>
                <h3 className="lg:text-[12px] md:text-[25px] ">{cusinestring}</h3>
