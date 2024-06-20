@@ -68,7 +68,7 @@ const Variant = (props) => {
    return (
       <AddonsContext.Provider value={{addonsSelected,setAddonsSelected}}>
          <div className="flex flex-col z-50 rounded-2xl pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[20%] lg:w-[60%] md:w-[95%] md:top-[20%] bg-white border border-gray-300 bg-white-300">
-            <div className="flex justify-between mx-7 my-2 border-b-2 py-3 ">
+            <div className ="flex justify-between mx-7 my-2 border-b-2 py-3 ">
                {showAddons ? 
                   <button className="lg:text-lg md:text-[50px] active:text-sm w-5" onClick={() => {
                      handleSizeVariant(true);
@@ -95,8 +95,8 @@ const Variant = (props) => {
                   {props.data.variant.map((ele1) => (
                      (
                         ele1.variations.map((ele) => (
-                           <div key={ele.id} className="flex lg:flex-row md:flex-col bg-slate-50 justify-between text-center variants cursor-pointer rounded-xl p-2  text-lg list-none lg:m-2 md:m-3 lg:font-semibold md:font-medium text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
-                              {ele.isVeg ? <span className="px-2 md:py-1 rounded-xl text-center md:w-[10%] bg-green-500 lg:text-sm md:text-xl text-white">veg</span> : <span className="px-1 md:py-1 rounded-xl bg-red-500 text-center md:w-[10%] text-xl text-white">n-veg</span>}
+                           <div key={ele.id} className="flex lg:flex-row md:flex-col bg-slate-100 justify-between text-center variants cursor-pointer rounded-xl p-2  text-lg list-none lg:m-2 md:m-3 lg:font-semibold md:font-medium text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
+                              {ele.isVeg ? <span className="px-2 py-1 rounded-xl text-center md:w-[10%] lg:w-[5%] bg-green-500 lg:text-sm md:text-xl text-white">veg</span> : <span className="px-1 md:py-1 rounded-xl bg-red-500 text-center md:w-[10%] text-xl text-white">n-veg</span>}
                               <span className="mx-2 lg:text-sm text-center md:text-3xl">{ele.name}</span>
                               {ele.price && <span className="mx-2 lg:text-sm md:text-3xl">₹{ele.price ? ele.price : 0}</span>}
                            </div>

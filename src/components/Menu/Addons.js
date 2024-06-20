@@ -24,9 +24,9 @@ const Addons = (data) => {
             if(array.includes(type) || array.includes(type2)) {
                flag = true;
                return (
-                  <div key={index} className="my-2 ml-8 mr-4 p-2 rounded-lg">
+                  <div key={index} className="lg:my-2 md:my-4 ml-8 mr-4 p-2 rounded-lg">
                      <div>
-                        <h1 className="font-semibold">{ele.groupName}</h1>
+                        <h1 className="font-semibold md:text-4xl lg:text-[16px] py-4">{ele.groupName}</h1>
                         <AddonsList data = {{choices,dishname,groupName}}/>
                      </div>
                   </div>
