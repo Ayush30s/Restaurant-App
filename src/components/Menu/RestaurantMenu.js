@@ -62,16 +62,18 @@ const RestaurantMenu = () => {
          <FoodContext.Provider value={{vegornot : foodtype , restaurantid: id}}>
             <BlurContext.Provider value={{ dishclicked, setdishclicked }}>
 
-               <div id="resDetail" className="lg:w-[80%] md:w-[100%] py-4 lg:ml-32 md:ml-0">
+               <div id="resDetail" className="lg:w-[80%] md:w-[100%] py-4 lg:ml-32 md:ml-1 flex flex-col">
                   <AboutRestaurant data={aboutrestaurant} />
       
-                  {/* <Offer data={offerdata} /> */}
+                  <div>
+                  <Offer data={offerdata} />     
+                  </div>       
       
                   {/* veg or not - Button */
                      aboutrestaurant?.veg ? 
-                        <span className="text-green-600 lg:text-sm mx-5 md:text-2xl border-green-600 border lg:p-1 md:p-2 bg-green-100 font-semibold rounded-2xl">🌱 Veg only</span>
+                        <span className="text-green-600 lg:text-sm mx-5 md:text-2xl border-green-600 border lg:p-1 md:p-2 bg-green-100 font-semibold rounded-2xl md:ml-4">🌱 Veg only</span>
                      :
-                     <button id="vegbtn" className="static top-10 lg:text-sm md:text-2xl lg:p-1 md:p-2 w-[15%] rounded-full m-2 text-white bg-green-700 border shadow-2xl " 
+                     <button id="vegbtn" className="static md:ml-4 top-10 lg:text-sm md:text-2xl lg:p-1 md:p-3 w-[15%] rounded-full m-2 text-white bg-green-700 border shadow-2xl border-white" 
                         onClick={() => {
                            changeCSS("vegbtn" ,foodtype);
                            setfoodtype(!foodtype);
@@ -97,14 +99,14 @@ const RestaurantMenu = () => {
                   }
 
                   {
-                     cart.length > 0 && <div className=" text-sm fixed top-[90%] left-[15%]  rounded-md font-semibold bg-green-500 text-white p-3 w-[70%] flex flex-row justify-between z-10">
-                        <h1 className="py-1 px-2 rounded-xl bg-green-600">({cart.length}) Items Added</h1>
-                        <Link to = "/cart"><h1 className="text-green-600 bg-white py-1 px-2 rounded-2xl">VIEW CART🛒</h1></Link>
+                     cart.length > 0 && <div className=" text-sm fixed bottom-0 lg:left-[15%] md:left-0  rounded-md font-semibold bg-green-500 text-white p-4 lg:w-[70%] md:w-[100%] flex flex-row justify-between z-10">
+                        <h1 className="lg:py-1 lg:px-2 md:p-6 rounded-2xl lg:text-[14px] md:text-[30px] bg-green-600">({cart.length}) Items Added</h1>
+                        <Link to = "/cart"><h1 className="text-green-600 bg-white lg:text-[14px] md:text-[30px] lg:py-1 lg:px-2 md:p-6 rounded-2xl">VIEW CART🛒</h1></Link>
                      </div>
                   }
                </div>
 
-               {
+               {//when a dish is clicked to get added in cart blur the div in the back 
                   dishclicked && <div className="newdiv absolute top-0 w-[100%] h-[130000px] z-20 backdrop-blur-md"></div>
                }
             </BlurContext.Provider>

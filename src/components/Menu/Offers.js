@@ -5,7 +5,7 @@ const Offer = (OfferData) => {
    const array = OfferData.data;
   
    return (
-      <div className="border-b border-b-gray py-4 w-full flex flex-row justify-between mb-4"> 
+      <div className="border-b border-b-gray py-4 w-full flex flex-row justify-between mb-4 md:ml-10 md:w-[90%] md:custom-scrollbar"> 
          {array?.map((ele, index) => (
             <div key={index} className="flex flex-col border border-gray-300 p-4 mb-4 rounded-lg">
                <div className="flex flex-row font-bold">

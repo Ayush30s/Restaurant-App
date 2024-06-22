@@ -20,13 +20,8 @@ const ItemCards = (data) => {
             //agr foodtype true hi mtlb veg aur dish type bhi true hi mtlb veg then show veg dishes only
             if(foodtype.vegornot && ele.card.info.isVeg) {
                return (
-                  <div key={ele.title}>
-                     <div>
-                        <h1>{ele.title}</h1>
-                        <p>{ele.description}</p>
-                     </div>
-
-                     <Dishes data = {ele} />
+                  <div>
+                     <Dishes data = {ele} key={ele.title}/>
                   </div>
                )
             }
@@ -34,13 +29,8 @@ const ItemCards = (data) => {
             // agr foodtype false hi mtlb non-veg aur dish type bhi false hi mtlb non-veg then show non-veg dishes only
             if(!foodtype.vegornot && !ele.card.info.isVeg) {
                return (
-                  <div key={ele.title} >
-                     <div>
-                        <h1>{ele.title}</h1>
-                        <p>{ele.description}</p>
-                     </div>
-
-                     <Dishes data = {ele} />
+                  <div>
+                     <Dishes data = {ele} key={ele.title}/>
                   </div>
                )
             }
