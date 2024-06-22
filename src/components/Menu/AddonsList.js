@@ -24,7 +24,7 @@ const AddonsList = (props) => {
                <span className="w-[60%] lg:text-[16px] md:text-4xl">{ele.name}</span>
                <span className="w-[15%] lg:text-[16px] md:text-4xl">₹{ele.price == undefined ? 0 : ele.price / 100}</span>
                <input
-                  className=""
+                  className="w-[10%] bg-red-500"
                   type="checkbox"
                   onChange={() => handleCheckBox(ele)}
                   checked={addonsSelected.some((addon) => addon.name === ele.name)}
