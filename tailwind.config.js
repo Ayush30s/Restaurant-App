@@ -23,6 +23,10 @@ module.exports = {
       extend: {
          fontFamily: {
             appFont: ["Rubik", 'sans-serif']   
+         },
+         lineHeight: {
+            'extra-loose': '2.5',
+            '12': '3rem',
          }
       },  
    },

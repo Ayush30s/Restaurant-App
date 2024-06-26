@@ -42,7 +42,7 @@ const Addons = (data) => {
          return (
                <div key={index} className="my-2 ml-8 mr-4 p-2 rounded-lg">
                   <div>
-                     <h1 className="font-semibold">{ele.groupName}</h1>
+                     <h1 className="font-semibold md:text-[40px] lg:text-[16px] py-2">{ele.groupName}</h1>
                      <AddonsList data = {{choices,type,dishname}}/>
                   </div>
                </div>
