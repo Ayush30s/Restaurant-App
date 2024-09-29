@@ -48,7 +48,8 @@ const Variant = (props) => {
       dispatch(updateFreez(false));
    }
 
-   const handleAddItem = () => {
+   const handleAddItem = (newDetails) => {
+      console.log(newDetails)
       dispatch(addItem(newDetails));
    }
 
@@ -61,7 +62,11 @@ const Variant = (props) => {
    }
 
    const handleVariantClick = (ele) => {
-      toggeldata(ele.price != undefined ? ele.price : 0); 
+      if(ele.price == undefined) {
+         toggeldata(0);
+      } else 
+         toggeldata(ele.price); 
+         
       setVariantSelected(ele);
    };
 
@@ -95,10 +100,10 @@ const Variant = (props) => {
                   {props.data.variant.map((ele1) => (
                      (
                         ele1.variations.map((ele) => (
-                           <div key={ele.id} className="flex flex-row bg-white text-center justify-between items-center leading-10 cursor-pointer rounded-xl lg:p-2 md:py-3 text-lg lg:m-2 md:m-3 lg:font-semibold md:font-medium text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
+                           ele.price > 0 && <div key={ele.id} className="flex flex-row bg-white text-center justify-between items-center leading-10 cursor-pointer rounded-xl lg:p-2 md:py-1 text-lg lg:m-2 md:m-3 lg:font-semibold md:font-medium text-gray-600 hover:text-black hover:bg-gray-100" onClick={() => handleVariantClick(ele)}>
                               {ele.isVeg ?<img className="text-xs md:w-[7%] lg:w-[3%]" src="https://i.pinimg.com/736x/e4/1f/f3/e41ff3b10a26b097602560180fb91a62.jpg"/> : <img className="text-xs md:w-[7%] lg:w-[3%]" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Non_veg_symbol.svg/2048px-Non_veg_symbol.svg.png"/>}
                               <p className = "lg:text-[16px] md:text-[40px] px-4">{ele.name}</p>
-                              {ele.price && <span className="mx-2 lg:text-sm md:text-[40px]">₹{ele.price ? ele.price : 0}</span>}
+                              <span className="mx-2 lg:text-sm md:text-[40px]">₹{ele.price ? ele.price : 0}</span>
                            </div>
                         ))
                      )
@@ -114,7 +119,7 @@ const Variant = (props) => {
                   <button className="lg:py-1 md:py-2 px-2 rounded-xl md:text-[40px] lg:text-sm hover:bg-green-600 md:border md:border-white md:rounded-full" onClick={() => {
                      blurData.setdishclicked(false);
                      if(variantSelected !== null) {
-                        handleAddItem();
+                        handleAddItem(newDetails);
                      }
                      props.chnagestate(false);
                   }}>Add Item</button> 
