@@ -72,7 +72,7 @@ const Variant = (props) => {
 
    return (
       <AddonsContext.Provider value={{addonsSelected,setAddonsSelected}}>
-         <div className="flex flex-col z-50 rounded-[40px] pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[20%] lg:w-[60%] md:w-[95%] md:top-[20%] bg-white border border-gray-300 bg-white-300">
+         <div className="flex flex-col z-50 rounded-[40px] pointer-events-auto fixed max-h-[60%] lg:top-[20%] lg:left-[20%] lg:w-[60%] md:w-[95%] md:top-[20%] bg-white border border-gray-300 bg-white-300 overflow-auto">
             <div className ="flex flex-row justify-between items-center mx-7 my-2 border-b-2 lg:py-3 md:py-5">
                {showAddons ? 
                   <button className="lg:text-lg md:text-[50px] active:text-sm lg:w-5 md:w-20" onClick={() => {
